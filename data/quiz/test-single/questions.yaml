@@ -1,0 +1,14 @@
+q1:
+  type:     single
+  question: "What is your favorite color"
+  responses:
+    blue:   Blue
+    green:  Green
+    red:    Red
+
+q2:
+  type:     single
+  question: "Is it raining today?"
+  responses:
+    yes:    Yes
+    no:     Noe

@@ -1,0 +1,16 @@
+q1:
+  type:     multiple
+  question: "Which colors are the best?"
+  responses:
+    blue:   Blue
+    green:  Green
+    red:    Red
+
+q2:
+  type:     multiple
+  question: "What are your favorite foods?"
+  responses:
+    pizza:      Pizza
+    tacos:      Tacos
+    burgers:    Hamburgers
+    salads:     Salads

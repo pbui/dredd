@@ -1,0 +1,67 @@
+''' quiz.py: Quiz class '''
+
+import difflib
+import os
+import re
+import yaml
+
+
+class Quiz(object):
+    ''' Dredd Quiz Class '''
+
+    def __init__(self, quiz_path):
+        questions_path = os.path.join(quiz_path, 'questions.yaml')
+        answers_path   = os.path.join(quiz_path, 'answers.yaml')
+
+        self.questions = yaml.load(open(questions_path))
+        self.answers   = yaml.load(open(answers_path))
+
+    def evaluate(self, responses):
+        ''' Evaluate Quiz responses '''
+        result = {}
+        for question, response in responses.items():
+            try:
+                if self.questions[question]['type'] == 'single':
+                    result[question] = self.evaluate_single(question, response)
+                elif self.questions[question]['type'] == 'multiple':
+                    result[question] = self.evaluate_multiple(question, response)
+                elif self.questions[question]['type'] == 'order':
+                    result[question] = self.evaluate_order(question, response)
+                elif self.questions[question]['type'] == 'blank':
+                    result[question] = self.evaluate_blank(question, response)
+                else:
+                    result[question] = 0
+            except KeyError:
+                result[question] = 0
+
+        result['total'] = sum(result.values())
+        return result
+
+    def evaluate_single(self, question, response):
+        for answer, value in self.answers[question]:
+            if response == answer:
+                return value
+        return 0
+
+    def evaluate_multiple(self, question, responses):
+        result = 0
+        for response in responses:
+            for answer, value in self.answers[question]:
+                if response == answer:
+                    result += value
+        return result
+
+    def evaluate_order(self, question, responses):
+        answers, value = self.answers[question]
+        return difflib.SequenceMatcher(None, responses, answers).ratio() * value
+
+    def evaluate_blank(self, question, responses):
+        result = 0
+        for response, answers in zip(responses, self.answers[question]):
+            for answer, value in answers:
+                if re.match(answer, response, re.IGNORECASE):
+                    result += value
+                    break
+        return result
+
+# vim: set sts=4 sw=4 ts=8 expandtab ft=python:

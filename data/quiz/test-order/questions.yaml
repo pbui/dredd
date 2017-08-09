@@ -1,0 +1,16 @@
+q1:
+  type:     order
+  question: "Rank the following colors."
+  responses:
+    blue:   Blue
+    green:  Green
+    red:    Red
+
+q2:
+  type:     order
+  question: "Rank the following foods."
+  responses:
+    pizza:      Pizza
+    tacos:      Tacos
+    burgers:    Hamburgers
+    salads:     Salads
