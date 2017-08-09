@@ -10,6 +10,7 @@ sys.path.append(os.curdir)
 
 import dredd.quiz
 
+# Dredd Quiz Single Choice Test Case ------------------------------------------
 
 class QuizSingleTestCase(unittest.TestCase):
     ''' Dredd Quiz Single Choice Test Case '''
@@ -75,6 +76,7 @@ class QuizSingleTestCase(unittest.TestCase):
         result = quiz.evaluate({'q1': 'red', 'q2': False})
         self.assertTrue(result['total'] == 0.0)
 
+# Dredd Quiz Multiple Choice Test Case -----------------------------------------
 
 class QuizMultipleTestCase(unittest.TestCase):
     ''' Dredd Quiz Multiple Choice Test Case '''
@@ -152,6 +154,7 @@ class QuizMultipleTestCase(unittest.TestCase):
         result = quiz.evaluate({'q1': ['red'], 'q2': ['pizza', 'burger']})
         self.assertTrue(result['total'] == 0.25)
 
+# Dredd Quiz Ordered List Test Case --------------------------------------------
 
 class QuizOrderTestCase(unittest.TestCase):
     ''' Dredd Quiz Ordered List Test Case '''
@@ -229,6 +232,7 @@ class QuizOrderTestCase(unittest.TestCase):
         })
         self.assertTrue(result['total'] == 0.5)
 
+# Dredd Quiz Fill-In-The-Blank Test Case --------------------------------------
 
 class QuizBlankTestCase(unittest.TestCase):
     ''' Dredd Quiz Fill-In-The Blank Test Case '''
@@ -319,6 +323,7 @@ class QuizBlankTestCase(unittest.TestCase):
         })
         self.assertTrue(result['total'] == 0.25)
 
+# Main Execution --------------------------------------------------------------
 
 if __name__ == '__main__':
     unittest.main()
