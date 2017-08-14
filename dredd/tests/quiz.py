@@ -136,7 +136,7 @@ class QuizMultipleTestCase(unittest.TestCase):
     def test_03_multiple_total(self):
         quiz = dredd.quiz.Quiz('data/quiz/test-multiple')
 
-        result = quiz.evaluate({'q1': ['blue'], 'q2': ['pizza']})
+        result = quiz.evaluate({'q1': 'blue', 'q2': 'pizza'})
         self.assertTrue(result['total'] == 0.5)
 
         result = quiz.evaluate({'q1': ['green'], 'q2': ['pizza']})
@@ -243,7 +243,7 @@ class QuizBlankTestCase(unittest.TestCase):
         self.assertTrue(len(quiz.questions) == 2)
         self.assertTrue(len(quiz.answers)   == 2)
 
-    def test_01_order_q1(self):
+    def test_01_blank_q1(self):
         quiz = dredd.quiz.Quiz('data/quiz/test-blank')
 
         result = quiz.evaluate({'q1': ['came', 'saw', 'conquered']})
@@ -269,7 +269,7 @@ class QuizBlankTestCase(unittest.TestCase):
         self.assertTrue(result['q1'] == 0.5)
         self.assertTrue(result['total'] == 0.5)
 
-    def test_02_order_q2(self):
+    def test_02_blank_q2(self):
         quiz = dredd.quiz.Quiz('data/quiz/test-blank')
 
         result = quiz.evaluate({'q2': ['batman']})
@@ -296,12 +296,12 @@ class QuizBlankTestCase(unittest.TestCase):
         self.assertTrue(result['q2'] == 0.0)
         self.assertTrue(result['total'] == 0.0)
 
-    def test_03_order_total(self):
+    def test_03_blank_total(self):
         quiz = dredd.quiz.Quiz('data/quiz/test-blank')
 
         result = quiz.evaluate({
             'q1': ['came', 'saw', 'conquered'],
-            'q2': ['batman']
+            'q2': 'batman'
         })
         self.assertTrue(result['total'] == 1.25)
 
