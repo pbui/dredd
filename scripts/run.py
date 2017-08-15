@@ -34,7 +34,7 @@ def usage(exit_code=0):
 
 Options:
 
-    -t SECONDS  Timeout duration before killing command (default is 10 seconds)
+    -t SECONDS  Timeout duration before killing command (default is 30 seconds)
     -v          Display verbose debugging output
 '''
     sys.exit(exit_code)
@@ -96,7 +96,7 @@ def return_result(language, result, status=EXIT_FAILURE, score=COMPILER_ERROR):
     sys.exit(status)
 
 def run(argv):
-    timeout = 10
+    timeout = 30
 
     try:
         options, arguments = getopt.getopt(argv[1:], "t:v")
@@ -150,11 +150,11 @@ def run(argv):
         except OSError:
             pass
 
-    if process.returncode != 0:
-        return_result(language.name, 'Execution Error', process.returncode, EXECUTION_ERROR)
-
     if toolong:
         return_result(language.name, 'Time Limit Exceeded', EXIT_FAILURE, TIMELIMIT_EXCEEDED)
+
+    if process.returncode != 0:
+        return_result(language.name, 'Execution Error', process.returncode, EXECUTION_ERROR)
 
     for line0, line1 in itertools.izip_longest(open('stdout'), open(output)):
         if line0 is None or line1 is None:
