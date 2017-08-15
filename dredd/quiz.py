@@ -35,7 +35,7 @@ class Quiz(object):
             except KeyError:
                 result[question] = 0
 
-        result['total'] = sum(result.values())
+        result['score'] = sum(result.values())
         return result
 
     def evaluate_single(self, question, response):
