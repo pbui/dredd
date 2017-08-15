@@ -92,7 +92,7 @@ def get_language_from_source(source, language_name=None):
 # Command ----------------------------------------------------------------------
 
 def return_result(language, result, status=EXIT_FAILURE, score=COMPILER_ERROR):
-    json.dump({'language': language, 'result': result, 'status': status, 'score': score}, sys.stdout)
+    json.dump({'result': result, 'score': score}, sys.stdout)
     sys.exit(status)
 
 def run(argv):
