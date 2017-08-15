@@ -46,6 +46,10 @@ class Quiz(object):
 
     def evaluate_multiple(self, question, responses):
         result = 0
+
+        if isinstance(responses, str):
+            responses = [responses]
+
         for response in responses:
             for answer, value in self.answers[question]:
                 if response == answer:
@@ -58,6 +62,10 @@ class Quiz(object):
 
     def evaluate_blank(self, question, responses):
         result = 0
+
+        if isinstance(responses, str):
+            responses = [responses]
+
         for response, answers in zip(responses, self.answers[question]):
             for answer, value in answers:
                 if re.match(answer, response, re.IGNORECASE):
