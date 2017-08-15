@@ -11,4 +11,4 @@ q2:
   question: "Is it raining today?"
   responses:
     yes:    Yes
-    no:     Noe
+    no:     No
