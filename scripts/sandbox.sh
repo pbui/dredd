@@ -18,9 +18,9 @@ if [ ! -d "$SANDBOX_PATH" ]; then
 fi
 
 cp -f "$RUNNER_PATH" "$SANDBOX_PATH"
-cp -f "$SOURCE_PATH" "$SANDBOX_PATH"
-cp -f "$INPUT_PATH" "$SANDBOX_PATH"
-cp -f "$OUTPUT_PATH" "$SANDBOX_PATH"
+cp -f "$SOURCE_PATH" "$SANDBOX_PATH" > /dev/null 2>&1
+cp -f "$INPUT_PATH" "$SANDBOX_PATH"  > /dev/null 2>&1
+cp -f "$OUTPUT_PATH" "$SANDBOX_PATH" > /dev/null 2>&1
 
 docker run -i -w /sandbox -v "$SANDBOX_PATH":/sandbox $IMAGE ./$(basename $RUNNER_PATH) $(basename $SOURCE_PATH) $(basename $INPUT_PATH) $(basename $OUTPUT_PATH)
 
