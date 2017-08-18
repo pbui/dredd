@@ -27,7 +27,7 @@ class IndexHandler(tornado.web.RequestHandler):
 
 Code:
 
-    # Post either source code
+    # Post source code with appropriate extension
     $ curl -F source=@program.c https://dredd.h4x0r.space/code/$name
 
 Quiz:
