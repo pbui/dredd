@@ -12,6 +12,31 @@ import tornado.gen
 import tornado.process
 import tornado.web
 
+# Index Handler ---------------------------------------------------------------
+
+class IndexHandler(tornado.web.RequestHandler):
+
+    def get(self, path):
+        self.set_header('Content-Type', 'text/plain; charset="utf-8"')
+        self.write('''
+                     _              _     _
+                  __| |_ __ ___  __| | __| |
+                 / _` | '__/ _ \/ _` |/ _` |
+                | (_| | | |  __/ (_| | (_| |
+                 \__,_|_|  \___|\__,_|\__,_|
+
+Code:
+
+    # Post either source code
+    $ curl -F source=@program.c https://dredd.h4x0r.space/code/$name
+
+Quiz:
+
+    # Post either JSON or YAML answers file
+    $ curl -d@answers.json https://dredd.h4x0r.space/quiz/$name
+
+''')
+
 # Code Handler ----------------------------------------------------------------
 
 class CodeHandler(tornado.web.RequestHandler):

@@ -1,6 +1,6 @@
 ''' application.py: Web Application '''
 
-from .handler import CodeHandler, QuizHandler
+from .handler import CodeHandler, IndexHandler, QuizHandler
 
 import logging
 import os
@@ -32,6 +32,7 @@ class Application(tornado.web.Application):
             (r'.*/assets/(.*)', tornado.web.StaticFileHandler, {'path', DREDD_ASSETS}),
             (r'.*/code/(.*)'  , CodeHandler),
             (r'.*/quiz/(.*)'  , QuizHandler),
+            (r'.*/(.*)'       , IndexHandler),
         ])
 
     def run(self):
