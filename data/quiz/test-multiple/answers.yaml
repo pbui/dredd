@@ -1,6 +1,2 @@
-q1: 
-  - [blue, 0.25]
-  - [green, 0.25]
-q2: 
-  - [pizza, 0.25]
-  - [tacos, 0.25]
+q1: [[blue, green], 0.5]
+q2: [[pizza, tacos], 0.5]
