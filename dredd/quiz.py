@@ -50,11 +50,8 @@ class Quiz(object):
         if isinstance(responses, str):
             responses = [responses]
 
-        for response in responses:
-            for answer, value in self.answers[question]:
-                if response == answer:
-                    result += value
-        return result
+        answers, value = self.answers[question]
+        return difflib.SequenceMatcher(None, sorted(responses), sorted(answers)).ratio() * value
 
     def evaluate_order(self, question, responses):
         answers, value = self.answers[question]
