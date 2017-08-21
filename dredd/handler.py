@@ -51,10 +51,13 @@ class CodeHandler(tornado.web.RequestHandler):
                 self.error(500, 'Unable to create sandbox: {}'.format(e))
 
             # Copy input and output to sandbox
-            input_src  = os.path.join(self.application.data_dir, 'code', code_name, 'input.txt')
-            input_dst  = os.path.join(sandbox, 'input.txt')
-            output_src = os.path.join(self.application.data_dir, 'code', code_name, 'output.txt')
-            output_dst = os.path.join(sandbox, 'output.txt')
+            with tempfile.NamedTemporaryFile(dir=sandbox, delete=False) as tf:
+                input_src  = os.path.join(self.application.data_dir, 'code', code_name, 'input.txt')
+                input_dst  = tf.name
+
+            with tempfile.NamedTemporaryFile(dir=sandbox, delete=False) as tf:
+                output_src = os.path.join(self.application.data_dir, 'code', code_name, 'output.txt')
+                output_dst = tf.name
 
             try:
                 shutil.copyfile(input_src, input_dst)
@@ -73,7 +76,7 @@ class CodeHandler(tornado.web.RequestHandler):
 
             # Execute runner
             command = 'scripts/sandbox.sh {} scripts/run.py {} {} {}'.format(
-                sandbox, source['filename'], 'input.txt', 'output.txt'
+                sandbox, source['filename'], os.path.basename(input_dst), os.path.basename(output_dst)
             )
 
             process = tornado.process.Subprocess(shlex.split(command), stdout=tornado.process.Subprocess.STREAM)
