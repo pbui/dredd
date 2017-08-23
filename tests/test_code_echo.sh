@@ -59,6 +59,26 @@ echo -n "Testing C++ ... "
 curl -F source=@$SOURCE localhost:9206/code/test-echo
 rm -f $SOURCE
 
+# Java
+
+SOURCE=$(mktemp tmp_XXXXXXX).java
+cat > $SOURCE <<EOF
+import java.util.Scanner;
+
+public class $(basename $SOURCE .java) {
+    public static void main(String[] args) {
+	Scanner scanner = new Scanner(System.in);
+	while (scanner.hasNextLine()) {
+	    System.out.println(scanner.nextLine());
+	}
+	scanner.close();
+    }
+}
+EOF
+echo -n "Testing Java ... "
+curl -F source=@$SOURCE localhost:9206/code/test-echo
+rm -f $SOURCE
+
 # C (Compiler Error)
 
 SOURCE=$(mktemp).c
