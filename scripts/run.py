@@ -60,6 +60,11 @@ LANGUAGES = (
         './{executable}',
         ('.cc', '.cpp')
     ),
+    Language('Java',
+        'javac {source}',
+        'java -cp . {executable}',
+        ('.java',)
+    ),
     Language('Perl',
         '',
         'perl {source}'
