@@ -75,6 +75,7 @@ public class $(basename $SOURCE .java) {
     }
 }
 EOF
+echo
 echo -n "Testing Java ... "
 curl -F source=@$SOURCE localhost:9206/code/test-echo
 rm -f $SOURCE
