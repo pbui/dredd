@@ -75,6 +75,11 @@ LANGUAGES = (
         'python2.7 {source}',
         ('.py',)
     ),
+    Language('Python 3',
+        '',
+        'python3.5 {source}',
+        ('.py3',)
+    ),
     Language('Ruby',
         '',
         'ruby {source}',

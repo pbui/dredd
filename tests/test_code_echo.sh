@@ -23,6 +23,19 @@ echo -n "Testing Python ... "
 curl -F source=@$SOURCE localhost:9206/code/test-echo
 rm -f $SOURCE
 
+# Python 3
+
+SOURCE=$(mktemp -t dredd_XXXXXXX.py3)
+cat > $SOURCE <<EOF
+import sys
+for line in sys.stdin:
+    print(line.rstrip())
+EOF
+echo
+echo -n "Testing Python 3 ... "
+curl -F source=@$SOURCE localhost:9206/code/test-echo
+rm -f $SOURCE
+
 # C
 
 SOURCE=$(mktemp -t dredd_XXXXXXX.c)

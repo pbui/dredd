@@ -6,8 +6,8 @@ RUN	    apt update -y
 # Run-time dependencies
 RUN	    apt install -y python-tornado python-requests python-yaml wget
 
-# Language Support: C, C++, Python, Ruby, Perl, Java
-RUN	    apt install -y gcc g++ python ruby perl default-jdk
+# Language Support: C, C++, Python, Python 3, Ruby, Perl, Java
+RUN	    apt install -y gcc g++ python python3.5 ruby perl default-jdk
 
 # Language Support: Swift
 RUN	    apt install -y clang libicu-dev libpython2.7; \
