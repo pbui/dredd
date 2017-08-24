@@ -65,6 +65,11 @@ LANGUAGES = (
         'java -cp . {executable}',
         ('.java',)
     ),
+    Language('JavaScript',
+        '',
+        'nodejs {source}'
+        , ('.js',)
+    ),
     Language('Perl',
         '',
         'perl {source}'

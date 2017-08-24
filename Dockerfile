@@ -6,8 +6,8 @@ RUN	    apt update -y
 # Run-time dependencies
 RUN	    apt install -y python-tornado python-requests python-yaml wget
 
-# Language Support: C, C++, Python, Python 3, Ruby, Perl, Java
-RUN	    apt install -y gcc g++ python python3.5 ruby perl default-jdk
+# Language Support: C, C++, Python, Python 3, Ruby, Perl, Java, JavaScript
+RUN	    apt install -y gcc g++ python python3.5 ruby perl default-jdk nodejs
 
 # Language Support: Swift
 RUN	    apt install -y clang libicu-dev libpython2.7; \
@@ -19,4 +19,3 @@ RUN	    apt install -y clang libicu-dev libpython2.7; \
 	    mv swift-3.1.1/usr/* swift-3.1.1/; \
 	    rm -fr swift-3.1.1/usr; \
 	    rm swift-3.1.1-RELEASE-ubuntu16.04.tar.gz
-

@@ -93,6 +93,25 @@ echo -n "Testing Java ... "
 curl -F source=@$SOURCE localhost:9206/code/test-echo
 rm -f $SOURCE
 
+# JavaScript 
+
+SOURCE=$(mktemp -t dredd_XXXXXXX.js)
+cat > $SOURCE <<EOF
+var readline = require('readline');
+var rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+    terminal: false
+});
+rl.on('line', function (line) {
+    console.log(line);
+});
+EOF
+echo
+echo -n "Testing JavaScript ... "
+curl -F source=@$SOURCE localhost:9206/code/test-echo
+rm -f $SOURCE
+
 # Swift
 
 SOURCE=$(mktemp -t dredd_XXXXXXX.swift)
