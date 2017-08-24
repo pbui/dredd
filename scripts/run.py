@@ -80,6 +80,11 @@ LANGUAGES = (
         'ruby {source}',
         ('.rb',)
     ),
+    Language('Swift',
+        '/opt/swift-3.1.1/bin/swiftc {source}',
+        './{executable}',
+        ('.swift',)
+    ),
 )
 
 def get_language_from_source(source, language_name=None):
@@ -140,8 +145,12 @@ def run(argv):
     stdout     = open('stdout', 'a')
     stdin      = open(input)
     start_time = time.time()
-    process    = subprocess.Popen(command.split(), stdin=stdin, stdout=stdout, stderr=stdout, preexec_fn=os.setsid)
     toolong    = False
+
+    try:
+        process = subprocess.Popen(command.split(), stdin=stdin, stdout=stdout, stderr=stdout, preexec_fn=os.setsid)
+    except OSError:
+        return_result(language.name, 'Execution Error', EXIT_FAILURE, EXECUTION_ERROR)
 
     try:
         while process.poll() is None:
