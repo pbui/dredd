@@ -1,6 +1,6 @@
 #!/bin/sh
 
-IMAGE=dredd:20170814
+IMAGE=dredd:20170824
 
 if [ $# -ne 5 ]; then
     echo "Usage: $(basename $0) sandbox runner source"
