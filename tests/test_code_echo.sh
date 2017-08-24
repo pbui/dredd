@@ -2,7 +2,7 @@
 
 # Bash
 
-SOURCE=$(mktemp).sh
+SOURCE=$(mktemp -t dredd_XXXXXXX.sh)
 cat > $SOURCE <<EOF
 cat
 EOF
@@ -12,7 +12,7 @@ rm -f $SOURCE
 
 # Python
 
-SOURCE=$(mktemp).py
+SOURCE=$(mktemp -t dredd_XXXXXXX.py)
 cat > $SOURCE <<EOF
 import sys
 for line in sys.stdin:
@@ -25,7 +25,7 @@ rm -f $SOURCE
 
 # C
 
-SOURCE=$(mktemp).c
+SOURCE=$(mktemp -t dredd_XXXXXXX.c)
 cat > $SOURCE <<EOF
 #include <stdio.h>
 #include <stdlib.h>
@@ -42,7 +42,7 @@ rm -f $SOURCE
 
 # C++
 
-SOURCE=$(mktemp).cpp
+SOURCE=$(mktemp -t dredd_XXXXXXX.cpp)
 cat > $SOURCE <<EOF
 #include <iostream>
 #include <string>
@@ -61,7 +61,7 @@ rm -f $SOURCE
 
 # Java
 
-SOURCE=$(mktemp tmp_XXXXXXX).java
+SOURCE=$(mktemp -t dredd_XXXXXXX.java)
 cat > $SOURCE <<EOF
 import java.util.Scanner;
 
@@ -82,7 +82,7 @@ rm -f $SOURCE
 
 # C (Compiler Error)
 
-SOURCE=$(mktemp).c
+SOURCE=$(mktemp -t dredd_XXXXXXX.c)
 cat > $SOURCE <<EOF
 #include <stdio.h>
 #include <stdlib.h>
@@ -99,7 +99,7 @@ rm -f $SOURCE
 
 # C (Execution Error)
 
-SOURCE=$(mktemp).c
+SOURCE=$(mktemp -t dredd_XXXXXXX.c)
 cat > $SOURCE <<EOF
 #include <stdio.h>
 #include <stdlib.h>
@@ -115,7 +115,7 @@ rm -f $SOURCE
 
 # C (Time Limit)
 
-SOURCE=$(mktemp).c
+SOURCE=$(mktemp -t dredd_XXXXXXX.c)
 cat > $SOURCE <<EOF
 #include <stdio.h>
 #include <stdlib.h>
@@ -132,7 +132,7 @@ rm -f $SOURCE
 
 # C (Wrong Answer)
 
-SOURCE=$(mktemp).c
+SOURCE=$(mktemp -t dredd_XXXXXXX.c)
 cat > $SOURCE <<EOF
 #include <stdio.h>
 #include <stdlib.h>
@@ -150,7 +150,7 @@ rm -f $SOURCE
 
 # C (Wrong Formatting)
 
-SOURCE=$(mktemp).c
+SOURCE=$(mktemp -t dredd_XXXXXXX.c)
 cat > $SOURCE <<EOF
 #include <stdio.h>
 #include <stdlib.h>
