@@ -137,8 +137,13 @@ def run(argv):
     source      = arguments[0]
     input       = arguments[1]
     output      = arguments[2]
-    language    = get_language_from_source(source)
     executable  = os.path.splitext(os.path.basename(source))[0]
+
+    try:
+        language = get_language_from_source(source)
+    except NotImplementedError:
+        message  = 'Unable to determine language for {}'.format(source)
+        return_result('Unknwon', message, EXIT_FAILURE, COMPILER_ERROR)
 
     # Compile
     Logger.debug('Compiling {}...'.format(source))
