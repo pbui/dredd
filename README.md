@@ -8,8 +8,8 @@ Docker
 
 Build:
 
-    $ docker build -t pbui/dredd:20170814       < Dockerfile.submit     # GitLab CI
-    $ docker build -t pbui/dredd-code:20170825  < Dockerfile.code       # Code run.py
+    $ docker build -t pbui/dredd:20170814      - < Dockerfile.submit     # GitLab CI
+    $ docker build -t pbui/dredd-code:20170825 - < Dockerfile.code       # Code run.py
 
 Push:
 
