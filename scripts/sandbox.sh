@@ -1,6 +1,7 @@
 #!/bin/sh
 
-IMAGE=dredd:20170824
+#IMAGE=dredd:20170824
+IMAGE=pbui/dredd-code:20170825
 
 if [ $# -ne 5 ]; then
     echo "Usage: $(basename $0) sandbox runner source"

@@ -1,0 +1,7 @@
+FROM	    alpine
+MAINTAINER  Peter Bui <pbui@nd.edu>
+
+RUN	    apk update
+
+# Run-time dependencies
+RUN	    apk add python py-tornado py-requests py-yaml
