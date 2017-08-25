@@ -60,6 +60,11 @@ LANGUAGES = (
         './{executable}',
         ('.cc', '.cpp')
     ),
+    Language('Go',
+        'go build {source}',
+        'go run {source}',
+        ('.go',)
+    ),
     Language('Java',
         'javac {source}',
         'java -cp . {executable}',

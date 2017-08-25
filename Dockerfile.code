@@ -19,3 +19,6 @@ RUN	    apt install -y clang libicu-dev libpython2.7; \
 	    mv swift-3.1.1/usr/* swift-3.1.1/; \
 	    rm -fr swift-3.1.1/usr; \
 	    rm swift-3.1.1-RELEASE-ubuntu16.04.tar.gz
+
+# Language Support: golang
+RUN	    apt install -y golang
