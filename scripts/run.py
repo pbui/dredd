@@ -163,7 +163,7 @@ def run(argv):
     toolong    = False
 
     try:
-        process = subprocess.Popen(command.split(), stdin=stdin, stdout=stdout, stderr=stdout, preexec_fn=os.setsid)
+        process = subprocess.Popen(command.split(), stdin=stdin, stdout=stdout, stderr=open(os.devnull, 'w'), preexec_fn=os.setsid)
     except OSError:
         return_result(language.name, 'Execution Error', EXIT_FAILURE, EXECUTION_ERROR)
 
