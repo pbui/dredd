@@ -190,24 +190,23 @@ def run(argv):
     if process.returncode != 0:
         return_result(language.name, 'Execution Error', process.returncode, EXECUTION_ERROR)
 
+    has_format_error = False
     for line0, line1 in itertools.izip_longest(open('stdout'), open(output)):
         if line0 is None or line1 is None:
             return_result(language.name, 'Wrong Answer', EXIT_FAILURE, WRONG_ANSWER)
 
         if line0 != line1:
-            line0 = line0.strip()
-            line1 = line1.strip()
+            line0 = line0.strip().lower()
+            line1 = line1.strip().lower()
             if line0 == line1:
-                return_result(language.name, 'Output Format Error', EXIT_FAILURE, WRONG_FORMATTING)
+                has_format_error = True
+            else:
+                return_result(language.name, 'Wrong Answer', EXIT_FAILURE, WRONG_ANSWER)
 
-            line0 = line0.lower()
-            line1 = line1.lower()
-            if line0 == line1:
-                return_result(language.name, 'Output Format Error', EXIT_FAILURE, WRONG_FORMATTING)
-
-            return_result(language.name, 'Wrong Answer', EXIT_FAILURE, WRONG_ANSWER)
-
-    return_result(language.name, 'Success', EXIT_SUCCESS, PROGRAM_SUCCESS)
+    if has_format_error:
+        return_result(language.name, 'Output Format Error', EXIT_FAILURE, WRONG_FORMATTING)
+    else:
+        return_result(language.name, 'Success', EXIT_SUCCESS, PROGRAM_SUCCESS)
 
 # Main Execution --------------------------------------------------------------
 
