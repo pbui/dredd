@@ -155,7 +155,7 @@ def run(argv):
     stdout  = open('stdout', 'w')
     command = language.compile.format(source=source, executable=executable)
     try:
-        subprocess.check_call(command, shell=True, stdout=stdout, stderr=stdout)
+        subprocess.check_call(command, shell=True, stdout=stdout, stderr=open(os.devnull))
     except subprocess.CalledProcessError:
         return_result(language.name, 'Compilation Error', EXIT_FAILURE, COMPILER_ERROR)
 
