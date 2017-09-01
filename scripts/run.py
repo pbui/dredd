@@ -196,8 +196,8 @@ def run(argv):
             return_result(language.name, 'Wrong Answer', EXIT_FAILURE, WRONG_ANSWER)
 
         if line0 != line1:
-            line0 = line0.strip().lower()
-            line1 = line1.strip().lower()
+            line0 = ''.join(line0.strip().split()).lower()
+            line1 = ''.join(line1.strip().split()).lower()
             if line0 == line1:
                 has_format_error = True
             else:
