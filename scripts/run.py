@@ -34,7 +34,7 @@ def usage(exit_code=0):
 
 Options:
 
-    -t SECONDS  Timeout duration before killing command (default is 30 seconds)
+    -t SECONDS  Timeout duration before killing command (default is 10 seconds)
     -v          Display verbose debugging output
 '''
     sys.exit(exit_code)
@@ -121,7 +121,7 @@ def return_result(language, result, status=EXIT_FAILURE, score=COMPILER_ERROR):
     sys.exit(status)
 
 def run(argv):
-    timeout = 30
+    timeout = 10
 
     try:
         options, arguments = getopt.getopt(argv[1:], "t:v")
