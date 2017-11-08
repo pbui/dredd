@@ -149,6 +149,17 @@ echo -n "Testing Go ... "
 curl -F source=@$SOURCE localhost:9206/code/test-echo
 rm -f $SOURCE
 
+# Brainfuck
+
+SOURCE=$(mktemp -t dredd_XXXXXXX.bf)
+cat > $SOURCE <<EOF
+,+[-.,+]
+EOF
+echo
+echo -n "Testing Brainfuck ... "
+curl -F source=@$SOURCE localhost:9206/code/test-echo
+rm -f $SOURCE
+
 # C (Compiler Error)
 
 SOURCE=$(mktemp -t dredd_XXXXXXX.c)

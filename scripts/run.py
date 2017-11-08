@@ -50,6 +50,11 @@ LANGUAGES = (
         'bash {source}',
         ('.sh',)
     ),
+    Language('Brainfuck',
+        '',
+        'bf {source}',
+        ('.bf',)
+    ),
     Language('C',
         'gcc -std=gnu99 -o {executable} {source} -lm',
         './{executable}',

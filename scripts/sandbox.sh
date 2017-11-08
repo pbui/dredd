@@ -1,8 +1,5 @@
 #!/bin/sh
 
-#IMAGE=dredd:20170824
-IMAGE=pbui/dredd-code:20170825
-
 if [ $# -ne 5 ]; then
     echo "Usage: $(basename $0) sandbox runner source"
     exit 1
@@ -13,6 +10,8 @@ RUNNER_PATH=${2}
 SOURCE_PATH=${3}
 INPUT_PATH=${4}
 OUTPUT_PATH=${5}
+
+IMAGE=pbui/dredd-code:20171108
 
 if [ ! -d "$SANDBOX_PATH" ]; then
     mkdir -p "$SANDBOX_PATH"
