@@ -6,4 +6,4 @@ ssh_tunnel() {
 }
 
 ssh_tunnel
-python dredd --logging=debug --debug
+python3 dredd --logging=debug --debug

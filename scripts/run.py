@@ -1,4 +1,4 @@
-#!/usr/bin/python2.7
+#!/usr/bin/env python3
 
 import collections
 import getopt
@@ -30,13 +30,13 @@ Logger = logging.getLogger()
 # Functions --------------------------------------------------------------------
 
 def usage(exit_code=0):
-    print >>sys.stderr, '''Usage: run [-d SANDBOX] [-t SECONDS -v] source input output
+    print('''Usage: run [-d SANDBOX] [-t SECONDS -v] source input output
 
 Options:
 
     -t SECONDS  Timeout duration before killing command (default is 10 seconds)
     -v          Display verbose debugging output
-'''
+''', file=sys.stderr)
     sys.exit(exit_code)
 
 # Languages --------------------------------------------------------------------
@@ -87,12 +87,12 @@ LANGUAGES = (
     ),
     Language('Python',
         '',
-        'python2.7 {source}',
+        'python3 {source}',
         ('.py',)
     ),
     Language('Python 3',
         '',
-        'python3.5 {source}',
+        'python3 {source}',
         ('.py3',)
     ),
     Language('Ruby',
@@ -196,7 +196,7 @@ def run(argv):
         return_result(language.name, 'Execution Error', process.returncode, EXECUTION_ERROR)
 
     has_format_error = False
-    for line0, line1 in itertools.izip_longest(open('stdout'), open(output)):
+    for line0, line1 in itertools.zip_longest(open('stdout'), open(output)):
         if line0 is None or line1 is None:
             return_result(language.name, 'Wrong Answer', EXIT_FAILURE, WRONG_ANSWER)
 
