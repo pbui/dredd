@@ -69,7 +69,7 @@ class CodeHandler(tornado.web.RequestHandler):
             source = self.request.files['source'][0]
 
             try:
-                with open(os.path.join(sandbox, source['filename']), 'w') as fs:
+                with open(os.path.join(sandbox, source['filename']), 'wb') as fs:
                     fs.write(source['body'])
             except IOError as e:
                 self.error(500, 'Unable to copy source code: {}'.format(e))

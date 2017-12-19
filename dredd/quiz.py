@@ -47,7 +47,7 @@ class Quiz(object):
     def evaluate_multiple(self, question, responses):
         result = 0
 
-        if isinstance(responses, str) or isinstance(responses, unicode):
+        if isinstance(responses, str):
             responses = [responses]
 
         answers, value = self.answers[question]
@@ -60,7 +60,7 @@ class Quiz(object):
     def evaluate_blank(self, question, responses):
         result = 0
 
-        if isinstance(responses, str) or isinstance(responses, unicode):
+        if isinstance(responses, str):
             responses = [responses]
 
         for response, answers in zip(responses, self.answers[question]):
