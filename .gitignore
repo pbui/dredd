@@ -1,2 +1,4 @@
+data/code/cse-*
+data/quiz/cse-*
 *.pyc
 *.swp
