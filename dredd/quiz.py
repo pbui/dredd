@@ -65,7 +65,8 @@ class Quiz(object):
 
         for response, answers in zip(responses, self.answers[question]):
             for answer, value in answers:
-                if re.match(answer, response, re.IGNORECASE) or answer.lower() == response.lower():
+                if (answer.lower() == response.lower() or
+                    re.match(answer, response, re.IGNORECASE)):
                     result += value
                     break
         return result
