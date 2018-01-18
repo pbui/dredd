@@ -65,10 +65,13 @@ class Quiz(object):
 
         for response, answers in zip(responses, self.answers[question]):
             for answer, value in answers:
-                if (answer.lower() == response.lower() or
-                    re.match(answer, response, re.IGNORECASE)):
-                    result += value
-                    break
+                try:
+                    if (answer.lower() == response.lower() or
+                        re.match(answer, response, re.IGNORECASE)):
+                        result += value
+                        break
+                except re.error:
+                    pass
         return result
 
 # vim: set sts=4 sw=4 ts=8 expandtab ft=python:
