@@ -2,7 +2,6 @@
 
 import difflib
 import os
-import re
 import yaml
 
 # Dredd Quiz Class ------------------------------------------------------------
@@ -45,8 +44,6 @@ class Quiz(object):
         return 0
 
     def evaluate_multiple(self, question, responses):
-        result = 0
-
         if isinstance(responses, str):
             responses = [responses]
 
@@ -65,13 +62,9 @@ class Quiz(object):
 
         for response, answers in zip(responses, self.answers[question]):
             for answer, value in answers:
-                try:
-                    if (answer.lower() == response.lower() or
-                        re.match(answer, response, re.IGNORECASE)):
-                        result += value
-                        break
-                except re.error:
-                    pass
+                if answer.lower() == response.lower():
+                    result += value
+                    break
         return result
 
 # vim: set sts=4 sw=4 ts=8 expandtab ft=python:
