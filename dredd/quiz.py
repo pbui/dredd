@@ -13,8 +13,11 @@ class Quiz(object):
         questions_path = os.path.join(quiz_path, 'questions.yaml')
         answers_path   = os.path.join(quiz_path, 'answers.yaml')
 
-        self.questions = yaml.load(open(questions_path))
-        self.answers   = yaml.load(open(answers_path))
+        with open(questions_path) as questions_stream:
+            self.questions = yaml.load(questions_stream)
+
+        with open(answers_path) as answers_stream:
+            self.answers   = yaml.load(answers_stream)
 
     def evaluate(self, responses):
         ''' Evaluate Quiz responses '''
