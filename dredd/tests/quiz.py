@@ -247,8 +247,8 @@ class QuizBlankTestCase(unittest.TestCase):
     def test_00_blank_load(self):
         quiz = dredd.quiz.Quiz('data/quiz/test-blank')
 
-        self.assertTrue(len(quiz.questions) == 2)
-        self.assertTrue(len(quiz.answers)   == 2)
+        self.assertTrue(len(quiz.questions) == 1)
+        self.assertTrue(len(quiz.answers)   == 1)
 
     def test_01_blank_q1(self):
         quiz = dredd.quiz.Quiz('data/quiz/test-blank')
@@ -276,57 +276,21 @@ class QuizBlankTestCase(unittest.TestCase):
         self.assertTrue(result['q1'] == 0.5)
         self.assertTrue(result['score'] == 0.5)
 
-    def test_02_blank_q2(self):
-        quiz = dredd.quiz.Quiz('data/quiz/test-blank')
-
-        result = quiz.evaluate({'q2': ['batman']})
-        self.assertTrue(result['q2'] == 0.5)
-        self.assertTrue(result['score'] == 0.5)
-
-        result = quiz.evaluate({'q2': ['many']})
-        self.assertTrue(result['q2'] == 0.0)
-        self.assertTrue(result['score'] == 0.0)
-
-        result = quiz.evaluate({'q2': ['IRONMAN']})
-        self.assertTrue(result['q2'] == 0.5)
-        self.assertTrue(result['score'] == 0.5)
-
-        result = quiz.evaluate({'q2': ['deadpool']})
-        self.assertTrue(result['q2'] == 0.5)
-        self.assertTrue(result['score'] == 0.5)
-
-        result = quiz.evaluate({'q2': ['D34dP001']})
-        self.assertTrue(result['q2'] == 0.5)
-        self.assertTrue(result['score'] == 0.5)
-
-        result = quiz.evaluate({'q2': ['deadpooll']})
-        self.assertTrue(result['q2'] == 0.0)
-        self.assertTrue(result['score'] == 0.0)
-
-    def test_03_blank_score(self):
+    def test_02_blank_score(self):
         quiz = dredd.quiz.Quiz('data/quiz/test-blank')
 
         result = quiz.evaluate({
             'q1': ['came', 'saw', 'conquered'],
-            'q2': 'batman'
-        })
-        self.assertTrue(result['score'] == 1.25)
-
-        result = quiz.evaluate({
-            'q1': ['came', 'derp', 'conquered'],
-            'q2': ['batman']
-        })
-        self.assertTrue(result['score'] == 1.00)
-
-        result = quiz.evaluate({
-            'q1': ['came', 'derp'],
-            'q2': ['batman']
         })
         self.assertTrue(result['score'] == 0.75)
 
         result = quiz.evaluate({
+            'q1': ['came', 'derp', 'conquered'],
+        })
+        self.assertTrue(result['score'] == 0.50)
+
+        result = quiz.evaluate({
             'q1': ['came', 'derp'],
-            'q2': ['batmany']
         })
         self.assertTrue(result['score'] == 0.25)
 
