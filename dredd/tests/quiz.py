@@ -92,7 +92,7 @@ class QuizMultipleTestCase(unittest.TestCase):
 
         result = quiz.evaluate({'q1': ['blue']})
         self.assertTrue(result['q1'] == 1/3.0)
-        self.assertTrue(result['score'] == 1/3.0)
+        self.assertTrue(abs(result['score'] - 1/3.0) < 0.0001)
 
         result = quiz.evaluate({'q1': ['blue', 'green']})
         self.assertTrue(result['q1'] == 0.5)
@@ -100,7 +100,7 @@ class QuizMultipleTestCase(unittest.TestCase):
 
         result = quiz.evaluate({'q1': ['green']})
         self.assertTrue(result['q1'] == 1/3.0)
-        self.assertTrue(result['score'] == 1/3.0)
+        self.assertTrue(abs(result['score'] - 1/3.0) < 0.0001)
 
         result = quiz.evaluate({'q1': ['red']})
         self.assertTrue(result['q1'] == 0.0)
@@ -119,7 +119,7 @@ class QuizMultipleTestCase(unittest.TestCase):
 
         result = quiz.evaluate({'q2': ['pizza']})
         self.assertTrue(result['q2'] == 1/3.0)
-        self.assertTrue(result['score'] == 1/3.0)
+        self.assertTrue(abs(result['score'] - 1/3.0) < 0.0001)
 
         result = quiz.evaluate({'q2': ['pizza', 'tacos']})
         self.assertTrue(result['q2'] == 0.5)
@@ -127,7 +127,7 @@ class QuizMultipleTestCase(unittest.TestCase):
 
         result = quiz.evaluate({'q2': ['tacos']})
         self.assertTrue(result['q2'] == 1/3.0)
-        self.assertTrue(result['score'] == 1/3.0)
+        self.assertTrue(abs(result['score'] - 1/3.0) < 0.0001)
 
         result = quiz.evaluate({'q2': ['burger']})
         self.assertTrue(result['q2'] == 0.0)
@@ -141,13 +141,13 @@ class QuizMultipleTestCase(unittest.TestCase):
         quiz = dredd.quiz.Quiz('data/quiz/test-multiple')
 
         result = quiz.evaluate({'q1': 'blue', 'q2': 'pizza'})
-        self.assertTrue(result['score'] == 2/3.0)
+        self.assertTrue(abs(result['score'] - 2/3.0) < 0.0001)
 
         result = quiz.evaluate({'q1': ['green'], 'q2': ['pizza']})
-        self.assertTrue(result['score'] == 2/3.0)
+        self.assertTrue(abs(result['score'] - 2/3.0) < 0.0001)
 
         result = quiz.evaluate({'q1': ['blue', 'green'], 'q2': ['pizza']})
-        self.assertTrue(result['score'] == 0.5 + 1/3.0)
+        self.assertTrue(abs(result['score'] - (0.5 + 1/3.0)) < 0.0001)
 
         result = quiz.evaluate({'q1': ['blue', 'green'], 'q2': ['pizza', 'tacos']})
         self.assertTrue(result['score'] == 1.00)
@@ -181,7 +181,7 @@ class QuizOrderTestCase(unittest.TestCase):
 
         result = quiz.evaluate({'q1': ['blue', 'red', 'green']})
         self.assertTrue(result['q1'] == 1/3.0)
-        self.assertTrue(result['score'] == 1/3.0)
+        self.assertTrue(abs(result['score'] - 1/3.0) < 0.0001)
 
         result = quiz.evaluate({'q1': ['blue', 'green']})
         self.assertTrue(result['q1'] == 0.4)
@@ -189,7 +189,7 @@ class QuizOrderTestCase(unittest.TestCase):
 
         result = quiz.evaluate({'q1': ['blue', 'orange', 'red']})
         self.assertTrue(result['q1'] == 1/3.0)
-        self.assertTrue(result['score'] == 1/3.0)
+        self.assertTrue(abs(result['score'] - 1/3.0) < 0.0001)
 
         result = quiz.evaluate({'q1': ['blue']})
         self.assertTrue(result['q1'] == 0.25)
