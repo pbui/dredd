@@ -50,11 +50,6 @@ LANGUAGES = (
         'bash {source}',
         ('.sh',)
     ),
-    Language('Brainfuck',
-        '',
-        'bf {source}',
-        ('.bf',)
-    ),
     Language('C',
         'gcc -std=gnu99 -o {executable} {source} -lm',
         './{executable}',
@@ -64,11 +59,6 @@ LANGUAGES = (
         'g++ -std=gnu++11 -o {executable} {source} -lm',
         './{executable}',
         ('.cc', '.cpp')
-    ),
-    Language('Go',
-        'go build {source}',
-        'go run {source}',
-        ('.go',)
     ),
     Language('Java',
         'javac {source}',
@@ -90,20 +80,10 @@ LANGUAGES = (
         'python3 {source}',
         ('.py',)
     ),
-    Language('Python 3',
-        '',
-        'python3 {source}',
-        ('.py3',)
-    ),
     Language('Ruby',
         '',
         'ruby {source}',
         ('.rb',)
-    ),
-    Language('Swift',
-        '/opt/swift-3.1.1/bin/swiftc {source}',
-        './{executable}',
-        ('.swift',)
     ),
 )
 
