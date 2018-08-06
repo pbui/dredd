@@ -70,11 +70,6 @@ LANGUAGES = (
         'nodejs {source}'
         , ('.js',)
     ),
-    Language('Perl',
-        '',
-        'perl {source}'
-        , ('.pl',)
-    ),
     Language('Python',
         '',
         'python3 {source}',
