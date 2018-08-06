@@ -10,7 +10,7 @@ echo -n "Testing Bash ... "
 curl -F source=@$SOURCE localhost:9206/code/test-echo
 rm -f $SOURCE
 
-# Python 3
+# Python
 
 SOURCE=$(mktemp -t dredd_XXXXXXX.py)
 cat > $SOURCE <<EOF
@@ -56,6 +56,19 @@ int main() {
 EOF
 echo
 echo -n "Testing C++ ... "
+curl -F source=@$SOURCE localhost:9206/code/test-echo
+rm -f $SOURCE
+
+# Ruby
+
+SOURCE=$(mktemp -t dredd_XXXXXXX.rb)
+cat > $SOURCE <<EOF
+ARGF.each do |line|
+    puts line
+end
+EOF
+echo
+echo -n "Testing Ruby ... "
 curl -F source=@$SOURCE localhost:9206/code/test-echo
 rm -f $SOURCE
 
@@ -122,7 +135,7 @@ rm -f $SOURCE
 # echo -n "Testing Go ... "
 # curl -F source=@$SOURCE localhost:9206/code/test-echo
 # rm -f $SOURCE
-# 
+
 # # Brainfuck
 # 
 # SOURCE=$(mktemp -t dredd_XXXXXXX.bf)
@@ -131,6 +144,22 @@ rm -f $SOURCE
 # EOF
 # echo
 # echo -n "Testing Brainfuck ... "
+# curl -F source=@$SOURCE localhost:9206/code/test-echo
+# rm -f $SOURCE
+
+# # Perl
+# 
+# SOURCE=$(mktemp -t dredd_XXXXXXX.pl)
+# cat > $SOURCE <<EOF
+# use strict;
+# use warnings;
+# 
+# while (my $line = <>) {
+#     print($line);
+# }
+# EOF
+# echo
+# echo -n "Testing Perl ... "
 # curl -F source=@$SOURCE localhost:9206/code/test-echo
 # rm -f $SOURCE
 
