@@ -6,5 +6,5 @@ RUN	    apt update -y
 # Run-time dependencies
 RUN	    apt install -y python3-tornado python3-requests python3-yaml
 
-# Language Support: C, C++, Python 3
-RUN	    apt install -y gcc g++ python3.5
+# Language Support: C, C++, Python3, Bash, Ruby, Nodejs, Java
+RUN	    apt install -y gcc g++ python3 bash ruby nodejs default-jdk
