@@ -48,7 +48,7 @@ class CodeHandler(tornado.web.RequestHandler):
             try:
                 sandbox = tempfile.mkdtemp()
             except OSError as e:
-                self.error(500, 'Unable to create sandbox: {}'.format(e))
+                return self.error(500, 'Unable to create sandbox: {}'.format(e))
 
             # Copy input and output to sandbox
             with tempfile.NamedTemporaryFile(dir=sandbox, delete=False) as tf:
@@ -63,7 +63,7 @@ class CodeHandler(tornado.web.RequestHandler):
                 shutil.copyfile(input_src, input_dst)
                 shutil.copyfile(output_src, output_dst)
             except OSError as e:
-                self.error(404, 'Unable to copy input and output files: {}'.format(e))
+                return self.error(404, 'Unable to copy input and output files: {}'.format(e))
 
             # Write source to sandbox
             source = self.request.files['source'][0]
@@ -72,7 +72,7 @@ class CodeHandler(tornado.web.RequestHandler):
                 with open(os.path.join(sandbox, source['filename']), 'wb') as fs:
                     fs.write(source['body'])
             except IOError as e:
-                self.error(500, 'Unable to copy source code: {}'.format(e))
+                return self.error(500, 'Unable to copy source code: {}'.format(e))
 
             # Execute runner
             command = 'scripts/sandbox.sh {} scripts/run.py {} {} {}'.format(
