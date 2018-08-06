@@ -10,29 +10,16 @@ echo -n "Testing Bash ... "
 curl -F source=@$SOURCE localhost:9206/code/test-echo
 rm -f $SOURCE
 
-# Python
-
-SOURCE=$(mktemp -t dredd_XXXXXXX.py)
-cat > $SOURCE <<EOF
-import sys
-for line in sys.stdin:
-    print line,
-EOF
-echo
-echo -n "Testing Python ... "
-curl -F source=@$SOURCE localhost:9206/code/test-echo
-rm -f $SOURCE
-
 # Python 3
 
-SOURCE=$(mktemp -t dredd_XXXXXXX.py3)
+SOURCE=$(mktemp -t dredd_XXXXXXX.py)
 cat > $SOURCE <<EOF
 import sys
 for line in sys.stdin:
     print(line.rstrip())
 EOF
 echo
-echo -n "Testing Python 3 ... "
+echo -n "Testing Python ... "
 curl -F source=@$SOURCE localhost:9206/code/test-echo
 rm -f $SOURCE
 
@@ -112,53 +99,40 @@ echo -n "Testing JavaScript ... "
 curl -F source=@$SOURCE localhost:9206/code/test-echo
 rm -f $SOURCE
 
-# Swift
-
-SOURCE=$(mktemp -t dredd_XXXXXXX.swift)
-cat > $SOURCE <<EOF
-while let line = readLine() {
-    print(line)
-}
-EOF
-echo
-echo -n "Testing Swift ... "
-curl -F source=@$SOURCE localhost:9206/code/test-echo
-rm -f $SOURCE
-
 # Go
-
-SOURCE=$(mktemp -t dredd_XXXXXXX.go)
-cat > $SOURCE <<EOF
-package main
-
-import (
-	"bufio"
-	"fmt"
-	"os"
-)
-
-func main() {
-	scanner := bufio.NewScanner(os.Stdin)
-	for scanner.Scan() {
-	    fmt.Println(scanner.Text())
-	}
-}
-EOF
-echo
-echo -n "Testing Go ... "
-curl -F source=@$SOURCE localhost:9206/code/test-echo
-rm -f $SOURCE
-
-# Brainfuck
-
-SOURCE=$(mktemp -t dredd_XXXXXXX.bf)
-cat > $SOURCE <<EOF
-,+[-.,+]
-EOF
-echo
-echo -n "Testing Brainfuck ... "
-curl -F source=@$SOURCE localhost:9206/code/test-echo
-rm -f $SOURCE
+# 
+# SOURCE=$(mktemp -t dredd_XXXXXXX.go)
+# cat > $SOURCE <<EOF
+# package main
+# 
+# import (
+# 	"bufio"
+# 	"fmt"
+# 	"os"
+# )
+# 
+# func main() {
+# 	scanner := bufio.NewScanner(os.Stdin)
+# 	for scanner.Scan() {
+# 	    fmt.Println(scanner.Text())
+# 	}
+# }
+# EOF
+# echo
+# echo -n "Testing Go ... "
+# curl -F source=@$SOURCE localhost:9206/code/test-echo
+# rm -f $SOURCE
+# 
+# # Brainfuck
+# 
+# SOURCE=$(mktemp -t dredd_XXXXXXX.bf)
+# cat > $SOURCE <<EOF
+# ,+[-.,+]
+# EOF
+# echo
+# echo -n "Testing Brainfuck ... "
+# curl -F source=@$SOURCE localhost:9206/code/test-echo
+# rm -f $SOURCE
 
 # C (Compiler Error)
 
