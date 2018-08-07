@@ -113,28 +113,28 @@ curl -F source=@$SOURCE localhost:9206/code/test-echo
 rm -f $SOURCE
 
 # Go
-# 
-# SOURCE=$(mktemp -t dredd_XXXXXXX.go)
-# cat > $SOURCE <<EOF
-# package main
-# 
-# import (
-# 	"bufio"
-# 	"fmt"
-# 	"os"
-# )
-# 
-# func main() {
-# 	scanner := bufio.NewScanner(os.Stdin)
-# 	for scanner.Scan() {
-# 	    fmt.Println(scanner.Text())
-# 	}
-# }
-# EOF
-# echo
-# echo -n "Testing Go ... "
-# curl -F source=@$SOURCE localhost:9206/code/test-echo
-# rm -f $SOURCE
+
+SOURCE=$(mktemp -t dredd_XXXXXXX.go)
+cat > $SOURCE <<EOF
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
+
+func main() {
+	scanner := bufio.NewScanner(os.Stdin)
+	for scanner.Scan() {
+	    fmt.Println(scanner.Text())
+	}
+}
+EOF
+echo
+echo -n "Testing Go ... "
+curl -F source=@$SOURCE localhost:9206/code/test-echo
+rm -f $SOURCE
 
 # # Brainfuck
 # 
