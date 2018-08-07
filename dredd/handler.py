@@ -25,16 +25,27 @@ class IndexHandler(tornado.web.RequestHandler):
                 | (_| | | |  __/ (_| | (_| |
                  \__,_|_|  \___|\__,_|\__,_|
 
-Code:
-
-    # Post source code with appropriate extension
-    $ curl -F source=@program.c https://dredd.h4x0r.space/code/$name
-
 Quiz:
 
     # Post either JSON or YAML answers file
     $ curl -d@answers.json https://dredd.h4x0r.space/quiz/$name
 
+Code:
+
+    # Post source code with appropriate extension
+    $ curl -F source=@program.c https://dredd.h4x0r.space/code/$name
+
+    Note: All code is executed and evaluated in an Ubuntu 18.04 Docker
+    container (e.g pbui/dredd-code:20180806), which supports the following
+    programming language run-times:
+
+    - Python 3.6
+    - GCC 7.3
+    - OpenJDK 11
+    - Ruby 2.5
+    - Node.js 8.10
+    - Golang 1.10
+    - Bash 4.4
 ''')
 
 # Code Handler ----------------------------------------------------------------
