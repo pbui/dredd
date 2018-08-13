@@ -65,6 +65,11 @@ LANGUAGES = (
         'go run {source}',
         ('.go',)
     ),
+    Language('Guile',
+        '',
+        'guile -s {source}',
+        ('.scm',)
+    ),
     Language('Java',
         'javac {source}',
         'java -cp . {executable}',

@@ -136,6 +136,21 @@ echo -n "Testing Go ... "
 curl -F source=@$SOURCE localhost:9206/code/test-echo
 rm -f $SOURCE
 
+# Guile
+
+SOURCE=$(mktemp -t dredd_XXXXXXX.scm)
+cat > $SOURCE <<EOF
+(use-modules (ice-9 rdelim))
+(define file (current-input-port))
+(do ((line (read-line file) (read-line file))) ((eof-object? line))
+    (display line)
+    (newline))
+EOF
+echo
+echo -n "Testing Guile ... "
+curl -F source=@$SOURCE localhost:9206/code/test-echo
+rm -f $SOURCE
+
 # # Brainfuck
 # 
 # SOURCE=$(mktemp -t dredd_XXXXXXX.bf)

@@ -7,4 +7,4 @@ RUN	    apt update -y
 RUN	    apt install -y python3-tornado python3-requests python3-yaml
 
 # Language Support: C, C++, Python3, Bash, Ruby, Nodejs, Java, golang
-RUN	    apt install -y gcc g++ python3 bash ruby nodejs default-jdk golang
+RUN	    apt install -y gcc g++ python3 bash ruby nodejs default-jdk golang guile-2.0
