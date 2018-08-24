@@ -11,6 +11,8 @@ import subprocess
 import sys
 import time
 
+from subprocess import DEVNULL
+
 # Constants --------------------------------------------------------------------
 
 EXIT_SUCCESS = 0
@@ -106,8 +108,8 @@ def get_language_from_source(source, language_name=None):
 
 # Command ----------------------------------------------------------------------
 
-def return_result(language, result, status=EXIT_FAILURE, score=COMPILER_ERROR):
-    json.dump({'result': result, 'score': score}, sys.stdout)
+def return_result(language, result, status=EXIT_FAILURE, score=COMPILER_ERROR, elapsed_time=0):
+    json.dump({'result': result, 'score': score, 'time': elapsed_time}, sys.stdout)
     sys.exit(status)
 
 def run(argv):
@@ -145,7 +147,7 @@ def run(argv):
     stdout  = open('stdout', 'w')
     command = language.compile.format(source=source, executable=executable)
     try:
-        subprocess.check_call(command, shell=True, stdout=stdout, stderr=open(os.devnull))
+        subprocess.check_call(command, shell=True, stdout=stdout, stderr=DEVNULL)
     except subprocess.CalledProcessError:
         return_result(language.name, 'Compilation Error', EXIT_FAILURE, COMPILER_ERROR)
 
@@ -158,32 +160,23 @@ def run(argv):
     toolong    = False
 
     try:
-        process = subprocess.Popen(command.split(), stdin=stdin, stdout=stdout, stderr=open(os.devnull, 'w'), preexec_fn=os.setsid)
+        process = subprocess.run(command.split(), stdin=stdin, stdout=stdout, stderr=DEVNULL, timeout=timeout)
     except OSError:
-        return_result(language.name, 'Execution Error', EXIT_FAILURE, EXECUTION_ERROR)
-
-    try:
-        while process.poll() is None:
-            if time.time() - start_time >= timeout:
-                toolong = True
-                break
-            time.sleep(0.25)
+        elapsed_time = time.time() - start_time
+        return_result(language.name, 'Execution Error', EXIT_FAILURE, EXECUTION_ERROR, elapsed_time)
+    except subprocess.TimeoutExpired:
+        elapsed_time = time.time() - start_time
+        return_result(language.name, 'Time Limit Exceeded', EXIT_FAILURE, TIMELIMIT_EXCEEDED, elapsed_time)
     finally:
-        try:
-            os.killpg(process.pid, signal.SIGTERM)
-        except OSError:
-            pass
-
-    if toolong:
-        return_result(language.name, 'Time Limit Exceeded', EXIT_FAILURE, TIMELIMIT_EXCEEDED)
+        elapsed_time = time.time() - start_time
 
     if process.returncode != 0:
-        return_result(language.name, 'Execution Error', process.returncode, EXECUTION_ERROR)
+        return_result(language.name, 'Execution Error', process.returncode, EXECUTION_ERROR, elapsed_time)
 
     has_format_error = False
     for line0, line1 in itertools.zip_longest(open('stdout'), open(output)):
         if line0 is None or line1 is None:
-            return_result(language.name, 'Wrong Answer', EXIT_FAILURE, WRONG_ANSWER)
+            return_result(language.name, 'Wrong Answer', EXIT_FAILURE, WRONG_ANSWER, elapsed_time)
 
         if line0 != line1:
             line0 = ''.join(line0.strip().split()).lower()
@@ -191,12 +184,12 @@ def run(argv):
             if line0 == line1:
                 has_format_error = True
             else:
-                return_result(language.name, 'Wrong Answer', EXIT_FAILURE, WRONG_ANSWER)
+                return_result(language.name, 'Wrong Answer', EXIT_FAILURE, WRONG_ANSWER, elapsed_time)
 
     if has_format_error:
-        return_result(language.name, 'Output Format Error', EXIT_FAILURE, WRONG_FORMATTING)
+        return_result(language.name, 'Output Format Error', EXIT_FAILURE, WRONG_FORMATTING, elapsed_time)
     else:
-        return_result(language.name, 'Success', EXIT_SUCCESS, PROGRAM_SUCCESS)
+        return_result(language.name, 'Success', EXIT_SUCCESS, PROGRAM_SUCCESS, elapsed_time)
 
 # Main Execution --------------------------------------------------------------
 
