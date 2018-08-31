@@ -52,6 +52,8 @@ Code:
 
 class CodeHandler(tornado.web.RequestHandler):
 
+    ENV = None
+
     @tornado.gen.coroutine
     def post(self, code_name):
         try:
@@ -90,7 +92,8 @@ class CodeHandler(tornado.web.RequestHandler):
                 sandbox, source['filename'], os.path.basename(input_dst), os.path.basename(output_dst)
             )
 
-            process = tornado.process.Subprocess(shlex.split(command), stdout=tornado.process.Subprocess.STREAM)
+            stream  = tornado.process.Subprocess.STREAM
+            process = tornado.process.Subprocess(shlex.split(command), stdout=stream, env=self.ENV)
             result  = yield tornado.gen.Task(process.stdout.read_until_close)
 
             # Write results
@@ -109,6 +112,11 @@ class CodeHandler(tornado.web.RequestHandler):
             'status': status_code,
             'error' : error_message,
         }))
+
+# Debug Handler ---------------------------------------------------------------
+
+class DebugHandler(CodeHandler):
+    ENV = {'DEBUG': '1'}
 
 # Quiz Handler ----------------------------------------------------------------
 
