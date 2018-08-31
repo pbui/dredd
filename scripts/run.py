@@ -108,8 +108,13 @@ def get_language_from_source(source, language_name=None):
 
 # Command ----------------------------------------------------------------------
 
-def return_result(language, result, status=EXIT_FAILURE, score=COMPILER_ERROR, elapsed_time=0):
-    json.dump({'result': result, 'score': score, 'time': elapsed_time}, sys.stdout)
+def return_result(language, result, status=EXIT_FAILURE, score=COMPILER_ERROR, elapsed_time=0, output_path=None):
+    data = {'result': result, 'score': score, 'time': elapsed_time}
+    if int(os.environ.get('DEBUG', 0)) == 1 and os.path.exists('stdout') and not output_path:
+        data['stdout'] = open('stdout').read()
+    if int(os.environ.get('DEBUG', 0)) == 1 and output_path:
+        data['diff']   = os.popen('diff -u stdout {}'.format(output_path)).read()
+    json.dump(data, sys.stdout)
     sys.exit(status)
 
 def run(argv):
@@ -140,7 +145,7 @@ def run(argv):
         language = get_language_from_source(source)
     except NotImplementedError:
         message  = 'Unable to determine language for {}'.format(source)
-        return_result('Unknwon', message, EXIT_FAILURE, COMPILER_ERROR)
+        return_result('Unknown', message, EXIT_FAILURE, COMPILER_ERROR)
 
     # Compile
     Logger.debug('Compiling {}...'.format(source))
@@ -176,7 +181,7 @@ def run(argv):
     has_format_error = False
     for line0, line1 in itertools.zip_longest(open('stdout'), open(output)):
         if line0 is None or line1 is None:
-            return_result(language.name, 'Wrong Answer', EXIT_FAILURE, WRONG_ANSWER, elapsed_time)
+            return_result(language.name, 'Wrong Answer', EXIT_FAILURE, WRONG_ANSWER, elapsed_time, output)
 
         if line0 != line1:
             line0 = ''.join(line0.strip().split()).lower()
@@ -184,10 +189,10 @@ def run(argv):
             if line0 == line1:
                 has_format_error = True
             else:
-                return_result(language.name, 'Wrong Answer', EXIT_FAILURE, WRONG_ANSWER, elapsed_time)
+                return_result(language.name, 'Wrong Answer', EXIT_FAILURE, WRONG_ANSWER, elapsed_time, output)
 
     if has_format_error:
-        return_result(language.name, 'Output Format Error', EXIT_FAILURE, WRONG_FORMATTING, elapsed_time)
+        return_result(language.name, 'Output Format Error', EXIT_FAILURE, WRONG_FORMATTING, elapsed_time, output)
     else:
         return_result(language.name, 'Success', EXIT_SUCCESS, PROGRAM_SUCCESS, elapsed_time)
 
