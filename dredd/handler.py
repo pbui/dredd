@@ -40,12 +40,13 @@ Code:
     programming language run-times:
 
     - Python 3.6
-    - GCC 7.3
+    - GCC 8.3
     - OpenJDK 11
     - Ruby 2.5
     - Node.js 8.10
     - Golang 1.10
     - Bash 4.4
+    - Perl6 6.c
 ''')
 
 # Code Handler ----------------------------------------------------------------

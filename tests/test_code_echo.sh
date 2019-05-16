@@ -151,6 +151,19 @@ echo -n "Testing Guile ... "
 curl -F source=@$SOURCE localhost:9206/code/test-echo
 rm -f $SOURCE
 
+# Perl6
+
+SOURCE=$(mktemp -t dredd_XXXXXXX.pl)
+cat > $SOURCE <<EOF
+for lines() {
+    say \$_;
+}
+EOF
+echo
+echo -n "Testing Perl6 ... "
+curl -F source=@$SOURCE localhost:9206/code/test-echo
+rm -f $SOURCE
+
 # # Brainfuck
 # 
 # SOURCE=$(mktemp -t dredd_XXXXXXX.bf)
