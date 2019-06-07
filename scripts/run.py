@@ -117,6 +117,8 @@ def return_result(language, result, status=EXIT_FAILURE, score=COMPILER_ERROR, e
     data = {'result': result, 'score': score, 'time': elapsed_time}
     if int(os.environ.get('DEBUG', 0)) == 1 and os.path.exists('stdout') and not output_path:
         data['stdout'] = open('stdout').read()
+    if int(os.environ.get('DEBUG', 0)) == 1 and os.path.exists('stderr') and not output_path:
+        data['stderr'] = open('stderr').read()
     if int(os.environ.get('DEBUG', 0)) == 1 and output_path:
         data['diff']   = os.popen('diff -u stdout {}'.format(output_path)).read()
     json.dump(data, sys.stdout)
@@ -155,9 +157,10 @@ def run(argv):
     # Compile
     Logger.debug('Compiling {}...'.format(source))
     stdout  = open('stdout', 'w')
+    stderr  = open('stderr', 'w')
     command = language.compile.format(source=source, executable=executable)
     try:
-        subprocess.check_call(command, shell=True, stdout=stdout, stderr=DEVNULL)
+        subprocess.check_call(command, shell=True, stdout=stdout, stderr=stderr)
     except subprocess.CalledProcessError:
         return_result(language.name, 'Compilation Error', EXIT_FAILURE, COMPILER_ERROR)
 
@@ -170,7 +173,7 @@ def run(argv):
     toolong    = False
 
     try:
-        process = subprocess.run(command.split(), stdin=stdin, stdout=stdout, stderr=DEVNULL, timeout=timeout)
+        process = subprocess.run(command.split(), stdin=stdin, stdout=stdout, stderr=stderr, timeout=timeout)
     except OSError:
         elapsed_time = time.time() - start_time
         return_result(language.name, 'Execution Error', EXIT_FAILURE, EXECUTION_ERROR, elapsed_time)
