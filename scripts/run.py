@@ -120,7 +120,7 @@ def return_result(language, result, status=EXIT_FAILURE, score=COMPILER_ERROR, e
     if int(os.environ.get('DEBUG', 0)) == 1 and os.path.exists('stderr') and not output_path:
         data['stderr'] = open('stderr').read()
     if int(os.environ.get('DEBUG', 0)) == 1 and output_path:
-        data['diff']   = os.popen('diff -u stdout {}'.format(output_path)).read()
+        data['diff']   = os.popen('diff -y stdout {}'.format(output_path)).read()
     json.dump(data, sys.stdout)
     sys.exit(status)
 
