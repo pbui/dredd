@@ -4,10 +4,13 @@ MAINTAINER  Peter Bui <pbui@nd.edu>
 RUN	    apt update -y
 
 # Run-time dependencies
-RUN	    apt install -y python3-tornado python3-requests python3-yaml
+RUN	    apt install -y python3-tornado python3-requests python3-yaml curl
 
 # Language Support: C, C++, Python3, Bash, Ruby, Nodejs, Java, golang, Guile, Perl6
 RUN	    apt install -y gcc g++ python3 bash ruby nodejs default-jdk golang guile-2.0 perl6
+
+# Language Support: rust
+RUN	    curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable -y && mv /root/.cargo/bin/* /usr/local/bin/
 
 # Cleanup
 RUN	    apt clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

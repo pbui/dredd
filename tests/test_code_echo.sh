@@ -164,6 +164,23 @@ echo -n "Testing Perl6 ... "
 curl -F source=@$SOURCE localhost:9206/code/test-echo
 rm -f $SOURCE
 
+# Rust
+
+SOURCE=$(mktemp -t dredd_XXXXXXX.rs)
+cat > $SOURCE <<EOF
+use std::io::{self, BufRead};
+
+fn main() {
+    let stdin = io::stdin();
+    for line in stdin.lock().lines() {
+        println!("{}", line.unwrap());
+    }
+}
+EOF
+echo -n "Testing Rust ... "
+curl -F source=@$SOURCE localhost:9206/code/test-echo
+rm -f $SOURCE
+
 # # Brainfuck
 # 
 # SOURCE=$(mktemp -t dredd_XXXXXXX.bf)

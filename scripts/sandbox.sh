@@ -16,7 +16,9 @@ OUTPUT_PATH=${5}
 #IMAGE=pbui/dredd-code:20180806
 #IMAGE=pbui/dredd-code:20180813
 #IMAGE=pbui/dredd-code:20180829
-IMAGE=pbui/dredd-code:20190516
+#IMAGE=pbui/dredd-code:20190516
+#IMAGE=pbui/dredd-code:20190819
+IMAGE=pbui/dredd-code:20190830
 
 if [ ! -d "$SANDBOX_PATH" ]; then
     mkdir -p "$SANDBOX_PATH"

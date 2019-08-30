@@ -97,6 +97,11 @@ LANGUAGES = (
         'ruby {source}',
         ('.rb',)
     ),
+    Language('Rust',
+        'rustc {source}',
+        './{executable}',
+        ('.rs',)
+    ),
 )
 
 def get_language_from_source(source, language_name=None):
