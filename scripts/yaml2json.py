@@ -1,8 +1,8 @@
-#!/usr/bin/python2.7
+#!/usr/bin/env python3
 
 import json
 import sys
 
 import yaml
 
-print json.dumps(yaml.load(sys.stdin), indent=4)
+print(json.dumps(yaml.safe_load(sys.stdin), indent=4))
