@@ -102,7 +102,7 @@ LANGUAGES = (
         './{executable}',
         ('.rs',)
     ),
-    Language('PHP 7.1',
+    Language('PHP 7.2',
             '',
             'php -f {executable}',
             ('.php',)
