@@ -293,3 +293,16 @@ echo
 echo -n "Testing C (Wrong Formatting)... "
 curl -F source=@$SOURCE localhost:9206/code/test-echo
 rm -f $SOURCE
+
+# PHP 7.1
+SOURCE=$(mktmp -t dredd_XXXXXXX.php)
+cat $SOURCE <<EOF
+<?php
+while($f = fgets(STDIN)){
+    echo "$f";
+}
+?>
+EOF
+echo
+echo -n "Testing PHP 7.1... "
+curl -F source=@$SOURCE localhost:9206/code/test-echo

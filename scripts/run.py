@@ -102,6 +102,11 @@ LANGUAGES = (
         './{executable}',
         ('.rs',)
     ),
+    Language('PHP 7.1',
+            '',
+            'php -f {executable}',
+            ('.php',)
+    ),
 )
 
 def get_language_from_source(source, language_name=None):
