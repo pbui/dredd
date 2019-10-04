@@ -103,9 +103,9 @@ LANGUAGES = (
         ('.rs',)
     ),
     Language('PHP 7.2',
-            '',
-            'php -f {executable}',
-            ('.php',)
+        '',
+        'php -f {executable}',
+        ('.php',)
     ),
 )
 
