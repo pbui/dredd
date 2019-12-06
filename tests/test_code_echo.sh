@@ -177,6 +177,7 @@ fn main() {
     }
 }
 EOF
+echo
 echo -n "Testing Rust ... "
 curl -F source=@$SOURCE localhost:9206/code/test-echo
 rm -f $SOURCE
