@@ -242,23 +242,6 @@ echo -n "Testing C (Execution Error)... "
 curl -F source=@$SOURCE localhost:9206/code/test-echo
 rm -f $SOURCE
 
-# C (Time Limit)
-
-SOURCE=$(mktemp -t dredd_XXXXXXX.c)
-cat > $SOURCE <<EOF
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-int main(int argc, char *argv[]) {
-    sleep(100);
-    return 0;
-}
-EOF
-echo
-echo -n "Testing C (Time Limit)... "
-curl -F source=@$SOURCE localhost:9206/code/test-echo
-rm -f $SOURCE
-
 # C (Wrong Answer)
 
 SOURCE=$(mktemp -t dredd_XXXXXXX.c)
@@ -274,6 +257,23 @@ int main(int argc, char *argv[]) {
 EOF
 echo
 echo -n "Testing C (Wrong Answer)... "
+curl -F source=@$SOURCE localhost:9206/code/test-echo
+rm -f $SOURCE
+
+# C (Time Limit)
+
+SOURCE=$(mktemp -t dredd_XXXXXXX.c)
+cat > $SOURCE <<EOF
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+int main(int argc, char *argv[]) {
+    sleep(100);
+    return 0;
+}
+EOF
+echo
+echo -n "Testing C (Time Limit)... "
 curl -F source=@$SOURCE localhost:9206/code/test-echo
 rm -f $SOURCE
 
