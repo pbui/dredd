@@ -36,19 +36,19 @@ Code:
     $ curl -F source=@program.c https://dredd.h4x0r.space/code/$name
 
     Note: All code is executed and evaluated in an Ubuntu 18.04 Docker
-    container (e.g pbui/dredd-code:20190516), which supports the following
+    container (e.g pbui/dredd-code:20200506), which supports the following
     programming language run-times:
 
-    - Python 3.6
-    - GCC 8.3
-    - OpenJDK 11
-    - Ruby 2.5
-    - Node.js 8.10
-    - Golang 1.10
-    - Bash 4.4
-    - Perl6 6.c
+    - Python 3.8.2
+    - GCC 9.3.0
+    - OpenJDK 11.0.7
+    - Ruby 2.7.0p0
+    - Node.js 10.19.0
+    - Golang 1.13.8
+    - Bash 5.0.16
+    - Perl6 6.d
     - Guile 2.0.13
-    - Rust 1.37
+    - Rust 1.43.0
 ''')
 
 # Code Handler ----------------------------------------------------------------
