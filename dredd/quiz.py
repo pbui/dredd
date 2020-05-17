@@ -1,6 +1,5 @@
 ''' quiz.py: Quiz class '''
 
-import difflib
 import os
 import yaml
 
@@ -51,11 +50,13 @@ class Quiz(object):
             responses = [responses]
 
         answers, value = self.answers[question]
-        return difflib.SequenceMatcher(None, sorted(responses), sorted(answers)).ratio() * value
+        ratio = sum(1 for r, a in zip(responses, answers) if r == a) / len(answers)
+        return ratio * value
 
     def evaluate_order(self, question, responses):
         answers, value = self.answers[question]
-        return difflib.SequenceMatcher(None, responses, answers).ratio() * value
+        ratio = sum(1 for r, a in zip(responses, answers) if r == a) / len(answers)
+        return ratio * value
 
     def evaluate_blank(self, question, responses):
         result = 0
