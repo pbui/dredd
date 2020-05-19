@@ -50,7 +50,7 @@ class Quiz(object):
             responses = [responses]
 
         answers, value = self.answers[question]
-        ratio = sum(1 for r, a in zip(responses, answers) if r == a) / len(answers)
+        ratio = sum(1 for r, a in zip(sorted(responses), sorted(answers)) if r == a) / len(answers)
         return ratio * value
 
     def evaluate_order(self, question, responses):
