@@ -182,6 +182,18 @@ echo -n "Testing Rust ... "
 curl -F source=@$SOURCE localhost:9206/code/test-echo
 rm -f $SOURCE
 
+# Haskell
+
+SOURCE=$(mktemp -t dredd_XXXXXXX.hs)
+cat > $SOURCE <<EOF
+main = interact id
+EOF
+echo
+echo -n "Testing Haskell ... "
+curl -F source=@$SOURCE localhost:9206/code/test-echo
+rm -f $SOURCE
+
+
 # # Brainfuck
 # 
 # SOURCE=$(mktemp -t dredd_XXXXXXX.bf)

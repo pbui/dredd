@@ -72,6 +72,11 @@ LANGUAGES = (
         'guile -s {source}',
         ('.scm',)
     ),
+    Language('Haskell',
+        'ghc -o {executable} {source}',
+        './{executable}',
+        ('.hs',)
+    ),
     Language('Java',
         'javac {source}',
         'java -cp . {executable}',
