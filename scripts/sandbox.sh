@@ -13,6 +13,7 @@ OUTPUT_PATH=${5}
 
 #IMAGE=pbui/dredd-code:20191004
 IMAGE=pbui/dredd-code:20200506
+IMAGE=pbui/dredd-code:20200715
 
 if [ ! -d "$SANDBOX_PATH" ]; then
     mkdir -p "$SANDBOX_PATH"
