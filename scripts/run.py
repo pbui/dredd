@@ -166,18 +166,17 @@ def run(argv):
 
     # Compile
     Logger.debug('Compiling {}...'.format(source))
-    stdout  = open('stdout', 'w')
     stderr  = open('stderr', 'w')
     command = language.compile.format(source=source, executable=executable)
     try:
-        subprocess.check_call(command, shell=True, stdout=stdout, stderr=stderr)
+        subprocess.check_call(command, shell=True, stdout=stderr, stderr=stderr)
     except subprocess.CalledProcessError:
         return_result(language.name, 'Compilation Error', EXIT_FAILURE, COMPILER_ERROR)
 
     # Execute
     Logger.debug('Executing {}...'.format(executable))
     command    = language.execute.format(source=source, executable=executable)
-    stdout     = open('stdout', 'a')
+    stdout     = open('stdout', 'w')
     stdin      = open(input)
     start_time = time.time()
     toolong    = False
