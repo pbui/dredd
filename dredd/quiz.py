@@ -1,5 +1,6 @@
 ''' quiz.py: Quiz class '''
 
+import itertools
 import os
 import yaml
 
@@ -50,8 +51,9 @@ class Quiz(object):
             responses = [responses]
 
         answers, value = self.answers[question]
-        ratio = sum(1 for r, a in zip(sorted(responses), sorted(answers)) if r == a) / len(answers)
-        return ratio * value
+        p_ratio = sum(1.0 for r, a in itertools.zip_longest(sorted(responses), sorted(answers)) if r == a) / len(answers)
+        n_ratio = sum(0.5 for r, a in itertools.zip_longest(sorted(responses), sorted(answers)) if r != a) / len(answers)
+        return (p_ratio - n_ratio)*value
 
     def evaluate_order(self, question, responses):
         answers, value = self.answers[question]
