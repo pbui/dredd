@@ -51,9 +51,11 @@ class Quiz(object):
             responses = [responses]
 
         answers, value = self.answers[question]
-        p_ratio = sum(1.0 for r, a in itertools.zip_longest(sorted(responses), sorted(answers)) if r == a) / len(answers)
-        n_ratio = sum(0.5 for r, a in itertools.zip_longest(sorted(responses), sorted(answers)) if r != a) / len(answers)
-        return (p_ratio - n_ratio)*value
+        rset    = set(responses)
+        aset    = set(answers)
+        missing = 1.0*len(aset.difference(rset)) / len(answers)
+        extra   = 0.5*len(rset.difference(aset)) / len(answers)
+        return (1.0 - missing - extra)*value
 
     def evaluate_order(self, question, responses):
         answers, value = self.answers[question]
