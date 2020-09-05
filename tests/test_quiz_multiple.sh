@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo -n "Test quiz multiple ... "
+echo -n "Test quiz multiple (all correct) ... "
 curl -d@- localhost:9206/quiz/test-multiple <<EOF
 {
     "q1": [
@@ -15,7 +15,7 @@ curl -d@- localhost:9206/quiz/test-multiple <<EOF
 EOF
 
 echo
-echo -n "Test quiz multiple ... "
+echo -n "Test quiz multiple (one wrong choice) ... "
 curl -d@- localhost:9206/quiz/test-multiple <<EOF
 {
     "q1": [
@@ -30,7 +30,7 @@ curl -d@- localhost:9206/quiz/test-multiple <<EOF
 EOF
 
 echo
-echo -n "Test quiz multiple ... "
+echo -n "Test quiz multiple (one wrong choice) ... "
 curl -d@- localhost:9206/quiz/test-multiple <<EOF
 {
     "q1": [
@@ -45,14 +45,30 @@ curl -d@- localhost:9206/quiz/test-multiple <<EOF
 EOF
 
 echo
-echo -n "Test quiz multiple ... "
+echo -n "Test quiz multiple (one missing choice) ... "
 curl -d@- localhost:9206/quiz/test-multiple <<EOF
 {
     "q1": [
 	"blue"
     ],
     "q2": [
-	"",
+	"tacos"
+    ]
+}
+EOF
+
+echo
+echo -n "Test quiz multiple (one extra choice) ... "
+curl -d@- localhost:9206/quiz/test-multiple <<EOF
+{
+    "q1": [
+	"orange",
+	"blue",
+	"green"
+    ],
+    "q2": [
+	"pizza",
+	"burritos",
 	"tacos"
     ]
 }
