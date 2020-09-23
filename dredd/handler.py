@@ -136,6 +136,7 @@ class QuizHandler(tornado.web.RequestHandler):
         self.write(json.dumps(quiz.questions))
 
     def post(self, quiz_name):
+        self.set_header('Access-Control-Allow-Origin', self.request.headers.get('Origin', '*'))
         try:
             quiz = Quiz(os.path.join(self.application.data_dir, 'quiz', quiz_name))
         except IOError as e:
