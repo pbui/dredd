@@ -4,7 +4,7 @@ MAINTAINER  Peter Bui <pbui@nd.edu>
 ENV	    DEBIAN_FRONTEND noninteractive
 
 # Repository configuration for Zip
-RUN     echo 'deb https://dl.bintray.com/dryzig/zig-ubuntu bionic main' | sudo tee -a /etc/apt/sources.list
+RUN      echo 'deb https://dl.bintray.com/dryzig/zig-ubuntu bionic main' | sudo tee -a /etc/apt/sources.list
 
 RUN	    apt update -y
 
