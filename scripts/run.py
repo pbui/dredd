@@ -107,6 +107,11 @@ LANGUAGES = (
         './{executable}',
         ('.rs',)
     ),
+    Language('Zig',
+        '',
+        'zig run {source}',
+        ('.zig',)
+    ),
 )
 
 def get_language_from_source(source, language_name=None):

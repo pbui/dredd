@@ -3,13 +3,16 @@ MAINTAINER  Peter Bui <pbui@nd.edu>
 
 ENV	    DEBIAN_FRONTEND noninteractive
 
+# Repository configuration for Zip
+RUN		echo 'deb https://dl.bintray.com/dryzig/zig-ubuntu bionic main' | sudo tee -a /etc/apt/sources.list
+
 RUN	    apt update -y
 
 # Run-time dependencies
 RUN	    apt install -y python3-tornado python3-requests python3-yaml curl
 
-# Language Support: C, C++, Python3, Bash, Ruby, Nodejs, Java, golang, Guile, Perl6, Haskell
-RUN	    apt install -y gcc g++ python3 bash ruby nodejs default-jdk-headless golang guile-2.0 perl6 ghc
+# Language Support: C, C++, Python3, Bash, Ruby, Nodejs, Java, golang, Guile, Perl6, Haskell, Zip
+RUN	    apt install -y gcc g++ python3 bash ruby nodejs default-jdk-headless golang guile-2.0 perl6 ghc zip
 
 # Language Support: rust
 RUN	    curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable -y && mv /root/.cargo/bin/* /usr/local/bin/
