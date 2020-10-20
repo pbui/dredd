@@ -98,7 +98,7 @@ class CodeHandler(tornado.web.RequestHandler):
 
             stream  = tornado.process.Subprocess.STREAM
             process = tornado.process.Subprocess(shlex.split(command), stdout=stream, env=self.ENV)
-            result  = yield tornado.gen.Task(process.stdout.read_until_close)
+            result  = yield process.stdout.read_until_close()
 
             # Write results
             self.write(result)
