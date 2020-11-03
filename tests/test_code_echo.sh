@@ -193,6 +193,17 @@ echo -n "Testing Haskell ... "
 curl -F source=@$SOURCE localhost:9206/code/test-echo
 rm -f $SOURCE
 
+# Swift 5.3
+SOURCE=$(mktemp -t dredd_XXXXXXX.swift)
+cat > $SOURCE <<EOF
+while let line = readLine() {
+    print(line)
+}
+EOF
+echo
+echo -n "Testing Swift 5.3 ..."
+curl -F source=@$SOURCE localhost:9206/code/test-echo
+rm -f $SOURCE
 
 # # Brainfuck
 # 

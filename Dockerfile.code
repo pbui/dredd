@@ -14,5 +14,11 @@ RUN	    apt install -y gcc g++ python3 bash ruby nodejs default-jdk-headless gol
 # Language Support: rust
 RUN	    curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable -y && mv /root/.cargo/bin/* /usr/local/bin/
 
+# Language Support: Swift 5.3
+
+RUN wget https://swift.org/builds/swift-5.3-release/ubuntu2004/swift-5.3-RELEASE/swift-5.3-RELEASE-ubuntu20.04.tar.gz | tar xzf
+
+RUN cp -r swift-5.3-RELEASE-ubuntu20.04/usr /
+
 # Cleanup
 RUN	    apt clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
