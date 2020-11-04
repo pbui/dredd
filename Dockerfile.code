@@ -16,9 +16,9 @@ RUN	    curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable -y 
 
 # Language Support: Swift 5.3
 
-RUN wget https://swift.org/builds/swift-5.3-release/ubuntu2004/swift-5.3-RELEASE/swift-5.3-RELEASE-ubuntu20.04.tar.gz | tar xzf
+RUN     wget https://swift.org/builds/swift-5.3-release/ubuntu2004/swift-5.3-RELEASE/swift-5.3-RELEASE-ubuntu20.04.tar.gz | tar xzf
 
-RUN cp -r swift-5.3-RELEASE-ubuntu20.04/usr /
+RUN     cp -r swift-5.3-RELEASE-ubuntu20.04/usr /
 
 # Cleanup
 RUN	    apt clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
