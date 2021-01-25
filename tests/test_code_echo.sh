@@ -193,6 +193,40 @@ echo -n "Testing Haskell ... "
 curl -F source=@$SOURCE localhost:9206/code/test-echo
 rm -f $SOURCE
 
+# Zig
+SOURCE=$(mktemp -t dredd_XXXXXXX.zig)
+cat > $SOURCE <<EOF
+const std = @import("std");
+const io = std.io;
+const warn = std.debug.warn;
+
+pub fn main() !void {
+    const stdout = io.getStdOut().outStream();
+    const stdin = io.getStdIn();
+
+    var line_buf: [1024 * 4]u8 = undefined;
+
+
+    while(true) {
+        const bytes_read = stdin.read(line_buf[0..]) catch |err| {
+            warn("Unable to read from stream: {}\n", .{@errorName(err)});
+            return err;
+        };
+
+        if (bytes_read == 0) {
+            break;
+        }
+
+        stdout.writeAll(line_buf[0..bytes_read]) catch |err| {
+            warn("Unable to write to stdout: {}\n", .{@errorName(err)});
+            return err;
+        };
+    }
+}
+EOF
+echo
+echo -n "Testing Zig ... "
+curl -F source=@$SOURCE localhost:9206/code/test-echo
 
 # # Brainfuck
 # 
