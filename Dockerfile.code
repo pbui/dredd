@@ -14,5 +14,9 @@ RUN	    apt install -y gcc g++ python3 bash ruby nodejs default-jdk-headless gol
 # Language Support: rust
 RUN	    curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable -y && mv /root/.cargo/bin/* /usr/local/bin/
 
+# Language Support: Swift 5.4
+RUN     apt install -y binutils git gnupg2 libc6-dev libcurl4 libedit2 libgcc-9-dev libpython2.7 libsqlite3-0 libstdc++-9-dev libxml2 libz3-dev pkg-config tzdata zlib1g-dev
+RUN     curl https://swift.org/builds/swift-5.4-release/ubuntu2004/swift-5.4-RELEASE/swift-5.4-RELEASE-ubuntu20.04.tar.gz | tar xz && mv swift-5.4-RELEASE-ubuntu20.04/usr /usr
+
 # Cleanup
 RUN	    apt clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
