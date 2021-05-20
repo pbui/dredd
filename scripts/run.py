@@ -131,6 +131,8 @@ def return_result(language, result, status=EXIT_FAILURE, score=COMPILER_ERROR, e
         data['stderr'] = open('stderr').read()
     if int(os.environ.get('DEBUG', 0)) == 1 and output_path:
         data['diff']   = os.popen('diff -y stdout {}'.format(output_path)).read()
+    data['value']  = PROGRAM_SUCCESS
+    data['status'] = status
     json.dump(data, sys.stdout)
     sys.exit(status)
 
