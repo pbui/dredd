@@ -35,8 +35,8 @@ Code:
     # Post source code with appropriate extension
     $ curl -F source=@program.c https://dredd.h4x0r.space/code/$name
 
-    Note: All code is executed and evaluated in an Ubuntu 18.04 Docker
-    container (e.g pbui/dredd-code:20200506), which supports the following
+    Note: All code is executed and evaluated in an Ubuntu 20.04 Docker
+    container (e.g pbui/dredd-code:20210524), which supports the following
     programming language run-times:
 
     - Python 3.8.2
@@ -48,7 +48,7 @@ Code:
     - Bash 5.0.16
     - Perl6 6.d
     - Guile 2.0.13
-    - Rust 1.43.0
+    - Rust 1.52.1
     - GHC 8.10.1
 ''')
 
