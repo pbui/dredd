@@ -43,7 +43,7 @@ Code:
     - GCC 9.3.0
     - OpenJDK 11.0.7
     - Ruby 2.7.0p0
-    - Node.js 10.19.0
+    - Node.js 16.x
     - Golang 1.13.8
     - Bash 5.0.16
     - Perl6 6.d
