@@ -195,7 +195,8 @@ def run(argv):
         elapsed_time = time.time() - start_time
 
     if process.returncode != 0:
-        return_result(language.name, 'Execution Error', process.returncode, EXECUTION_ERROR, elapsed_time)
+        returncode = os.WEXITSTATUS(process.returncode) if os.WIFEXITED(process.returncode) else -process.returncode
+        return_result(language.name, 'Execution Error', returncode, EXECUTION_ERROR, elapsed_time)
 
     has_format_error = False
     for line0, line1 in itertools.zip_longest(open('stdout'), open(output)):
