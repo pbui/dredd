@@ -84,7 +84,7 @@ LANGUAGES = (
     ),
     Language('JavaScript',
         '',
-        'nodejs {source}'
+        'node {source}'
         , ('.js',)
     ),
     Language('Perl6',
