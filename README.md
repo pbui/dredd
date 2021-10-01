@@ -18,13 +18,13 @@ script (ie. `IMAGE`).
 
 Provided in this repository are two `Dockerfiles`:
 
-    - `Dockerfile.submit`: This provides an example of a simple docker
-      container that can be used to submit quizzes and code to `dredd`.
-      
-    - `Dockerfile.code`: This provides an example of a simple docker container
-      that will be used to execute code in isolation.  As such, it should
-      contain the interpreters and compilers required by `dredd` and the
-      `scripts/run.py` script.
+- `Dockerfile.submit`: This provides an example of a simple docker container
+  that can be used to submit quizzes and code to `dredd`.
+    
+- `Dockerfile.code`: This provides an example of a simple docker container that
+  will be used to execute code in isolation.  As such, it should contain the
+  interpreters and compilers required by `dredd` and the `scripts/run.py`
+  script.
 
 Build:
 
