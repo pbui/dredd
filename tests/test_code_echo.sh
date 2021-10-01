@@ -193,6 +193,17 @@ echo -n "Testing Haskell ... "
 curl -F source=@$SOURCE localhost:9206/code/test-echo
 rm -f $SOURCE
 
+# Common Lisp
+
+SOURCE=$(mktemp -t dredd_XXXXXXX.lisp)
+cat > $SOURCE <<EOF
+(loop for line = (read-line)
+      while line do (format t "~a~%" line))
+EOF
+echo
+echo -n "Testing Common Lisp ... "
+curl -F source=@$SOURCE localhost:9206/code/test-echo
+rm -f $SOURCE
 
 # # Brainfuck
 # 

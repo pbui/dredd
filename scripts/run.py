@@ -62,6 +62,11 @@ LANGUAGES = (
         './{executable}',
         ('.cc', '.cpp')
     ),
+    Language('Common Lisp',
+        '',
+        'sbcl --script {source}',
+        ('.lisp', '.cl')
+    ),
     Language('Go',
         'go build {source}',
         'go run {source}',
