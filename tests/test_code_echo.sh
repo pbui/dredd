@@ -205,6 +205,31 @@ echo -n "Testing Common Lisp ... "
 curl -F source=@$SOURCE localhost:9206/code/test-echo
 rm -f $SOURCE
 
+# C#
+
+SOURCE=$(mktemp -t dredd_XXXXXXX.cs)
+cat > $SOURCE <<EOF
+using System;
+using System.IO;
+namespace dredd
+{
+    class dredd_XXXXXXX
+    {
+        static void Main(string[] args)
+        {
+            string line;
+            while(!string.IsNullOrEmpty(line = Console.ReadLine())){
+                Console.WriteLine(line);
+            }
+        }
+    }
+}
+EOF
+echo
+echo -n "Testing C# ... "
+curl -F source=@$SOURCE localhost:9206/code/test-echo
+rm -f $SOURCE
+
 # # Brainfuck
 # 
 # SOURCE=$(mktemp -t dredd_XXXXXXX.bf)
