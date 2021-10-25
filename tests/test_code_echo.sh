@@ -218,7 +218,7 @@ namespace dredd
         static void Main(string[] args)
         {
             string line;
-            while(!string.IsNullOrEmpty(line = Console.ReadLine())){
+            while((line = Console.ReadLine()) != null){
                 Console.WriteLine(line);
             }
         }
@@ -231,7 +231,7 @@ curl -F source=@$SOURCE localhost:9206/code/test-echo
 rm -f $SOURCE
 
 # # Brainfuck
-# 
+#
 # SOURCE=$(mktemp -t dredd_XXXXXXX.bf)
 # cat > $SOURCE <<EOF
 # ,+[-.,+]
@@ -242,12 +242,12 @@ rm -f $SOURCE
 # rm -f $SOURCE
 
 # # Perl
-# 
+#
 # SOURCE=$(mktemp -t dredd_XXXXXXX.pl)
 # cat > $SOURCE <<EOF
 # use strict;
 # use warnings;
-# 
+#
 # while (my $line = <>) {
 #     print($line);
 # }
