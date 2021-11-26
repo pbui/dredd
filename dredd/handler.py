@@ -44,6 +44,7 @@ Code:
     - OpenJDK 11.0.7
     - Ruby 2.7.0p0
     - Node.js 16.x
+    - TypeScript 4.5.x
     - Golang 1.13.8
     - Bash 5.0.16
     - Perl6 6.d

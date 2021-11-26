@@ -112,6 +112,23 @@ echo -n "Testing JavaScript ... "
 curl -F source=@$SOURCE localhost:9206/code/test-echo
 rm -f $SOURCE
 
+# Typescript
+
+SOURCE=$(mktemp -t dredd_XXXXXXX.ts)
+cat > $SOURCE <<EOF
+import { createInterface } from 'readline';
+const rl = createInterface({
+    input: process.stdin,
+    output: process.stdout,
+    terminal: false
+});
+rl.on('line', line => {console.log(line)})
+EOF
+echo
+echo -n "Testing TypeScript ... "
+curl -F source=@$SOURCE localhost:9206/code/test-echo
+rm -f $SOURCE
+
 # Go
 
 SOURCE=$(mktemp -t dredd_XXXXXXX.go)
