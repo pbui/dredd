@@ -210,9 +210,45 @@ echo -n "Testing Haskell ... "
 curl -F source=@$SOURCE localhost:9206/code/test-echo
 rm -f $SOURCE
 
+# Common Lisp
+
+SOURCE=$(mktemp -t dredd_XXXXXXX.lisp)
+cat > $SOURCE <<EOF
+(loop for line = (read-line)
+      while line do (format t "~a~%" line))
+EOF
+echo
+echo -n "Testing Common Lisp ... "
+curl -F source=@$SOURCE localhost:9206/code/test-echo
+rm -f $SOURCE
+
+# C#
+
+SOURCE=$(mktemp -t dredd_XXXXXXX.cs)
+cat > $SOURCE <<EOF
+using System;
+using System.IO;
+namespace dredd
+{
+    class dredd_XXXXXXX
+    {
+        static void Main(string[] args)
+        {
+            string line;
+            while((line = Console.ReadLine()) != null){
+                Console.WriteLine(line);
+            }
+        }
+    }
+}
+EOF
+echo
+echo -n "Testing C# ... "
+curl -F source=@$SOURCE localhost:9206/code/test-echo
+rm -f $SOURCE
 
 # # Brainfuck
-# 
+#
 # SOURCE=$(mktemp -t dredd_XXXXXXX.bf)
 # cat > $SOURCE <<EOF
 # ,+[-.,+]
@@ -223,12 +259,12 @@ rm -f $SOURCE
 # rm -f $SOURCE
 
 # # Perl
-# 
+#
 # SOURCE=$(mktemp -t dredd_XXXXXXX.pl)
 # cat > $SOURCE <<EOF
 # use strict;
 # use warnings;
-# 
+#
 # while (my $line = <>) {
 #     print($line);
 # }

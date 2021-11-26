@@ -1,12 +1,14 @@
 ''' application.py: Web Application '''
 
-from .handler import CodeHandler, DebugHandler, IndexHandler, QuizHandler
-
 import logging
 import os
+import socket
+import sys
 
 import tornado.ioloop
 import tornado.web
+
+from .handler import CodeHandler, DebugHandler, IndexHandler, QuizHandler
 
 # Dredd Constants -------------------------------------------------------------
 
@@ -40,7 +42,7 @@ class Application(tornado.web.Application):
         try:
             self.listen(self.port, self.address)
         except socket.error as e:
-            self.logger.fatal('Unable to listen on {}:{} = {}'.format(self.address, self.port, e))
+            self.logger.fatal('Unable to listen on %s:%s = %s', self.address, self.port, e)
             sys.exit(1)
 
         self.ioloop.start()
