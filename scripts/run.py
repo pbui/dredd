@@ -102,12 +102,6 @@ LANGUAGES = (
         'node {executable}.js',
         ('.ts',)
     ),
-    # Alternatively, you can run with ts-node for diminished performance
-    # Language('Typescript',
-    #     '',
-    #     'ts-node {source}',
-    #     ('.ts',)
-    # ),
     Language('Perl6',
         '',
         'perl6 {source}',
