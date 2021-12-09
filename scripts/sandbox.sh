@@ -15,6 +15,8 @@ OUTPUT_PATH=${5}
 IMAGE=pbui/dredd-code:20200506
 IMAGE=pbui/dredd-code:20200715
 IMAGE=pbui/dredd-code:20210524
+IMAGE=pbui/dredd-code:20211025
+IMAGE=pbui/dredd-code:20211126
 
 if [ ! -d "$SANDBOX_PATH" ]; then
     mkdir -p "$SANDBOX_PATH"
@@ -29,7 +31,7 @@ cp -f "$SOURCE_PATH" "$SANDBOX_PATH" > /dev/null 2>&1
 cp -f "$INPUT_PATH" "$SANDBOX_PATH"  > /dev/null 2>&1
 cp -f "$OUTPUT_PATH" "$SANDBOX_PATH" > /dev/null 2>&1
 
-docker run -e DEBUG=${DEBUG:-0} -i -w /sandbox -v "$SANDBOX_PATH":/sandbox $IMAGE \
+docker run --rm -e DEBUG=${DEBUG:-0} -i -w /sandbox -v "$SANDBOX_PATH":/sandbox $IMAGE \
     ./$(basename $RUNNER_PATH) $TIMEOUT \
         $(basename $SOURCE_PATH) \
         $(basename $INPUT_PATH) \
