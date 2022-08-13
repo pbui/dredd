@@ -17,6 +17,7 @@ IMAGE=pbui/dredd-code:20200715
 IMAGE=pbui/dredd-code:20210524
 IMAGE=pbui/dredd-code:20211025
 IMAGE=pbui/dredd-code:20211126
+IMAGE=pbui/dredd-code:20220812
 
 if [ ! -d "$SANDBOX_PATH" ]; then
     mkdir -p "$SANDBOX_PATH"

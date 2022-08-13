@@ -1,4 +1,4 @@
-FROM	    ubuntu:20.04
+FROM	    ubuntu:22.04
 MAINTAINER  Peter Bui <pbui@nd.edu>
 
 ENV	    DEBIAN_FRONTEND noninteractive
@@ -8,8 +8,8 @@ RUN	    apt update -y
 # Run-time dependencies
 RUN	    apt install -y python3-tornado python3-requests python3-yaml curl
 
-# Language Support: C, C++, Python3, Bash, Ruby, Java, golang, Guile, Perl6, Haskell, Common Lisp, C#
-RUN	    apt install -y gcc g++ python3 bash ruby default-jdk-headless golang guile-2.0 perl6 ghc sbcl mono-complete
+# Language Support: C, C++, Python3, Bash, Ruby, Java, golang, Guile, Haskell, Common Lisp, C#
+RUN	    apt install -y gcc g++ python3 bash ruby default-jdk-headless golang guile-2.2 ghc sbcl mono-complete
 
 # Language Support: rust
 RUN	    curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable -y && mv /root/.cargo/bin/* /usr/local/bin/
@@ -23,4 +23,4 @@ RUN     apt update && apt install -y nodejs
 RUN     npm install -g typescript ts-node @types/node
 
 # Cleanup
-RUN	    apt clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN	apt clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

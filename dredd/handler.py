@@ -35,23 +35,22 @@ Code:
     # Post source code with appropriate extension
     $ curl -F source=@program.c https://dredd.h4x0r.space/code/$name
 
-    Note: All code is executed and evaluated in an Ubuntu 20.04 Docker
-    container (e.g pbui/dredd-code:20210524), which supports the following
+    Note: All code is executed and evaluated in an Ubuntu 22.04 Docker
+    container (e.g pbui/dredd-code:20220812), which supports the following
     programming language run-times:
 
-    - Python 3.8.2
-    - GCC 9.3.0
-    - OpenJDK 11.0.7
-    - Ruby 2.7.0p0
+    - Python 3.10.4
+    - GCC 11.2.0
+    - OpenJDK 11.0.16
+    - Ruby 3.0
     - Node.js 16.x
     - TypeScript 4.5.x
-    - Golang 1.13.8
-    - Bash 5.0.16
-    - Perl6 6.d
-    - Guile 2.0.13
-    - Rust 1.52.1
-    - GHC 8.10.1
-    - SBCL 2.0.1
+    - Golang 1.18
+    - Bash 5.1
+    - Guile 2.2
+    - Rust 1.63
+    - GHC 8.8.4
+    - SBCL 2.1.11
     - Mono 6.8.0.105
 ''')
 
