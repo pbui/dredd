@@ -102,11 +102,6 @@ LANGUAGES = (
         'node {executable}.js',
         ('.ts',)
     ),
-    Language('Perl6',
-        '',
-        'perl6 {source}',
-        ('.pl', '.p6')
-    ),
     Language('Python',
         '',
         'python3 {source}',
