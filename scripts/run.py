@@ -117,6 +117,11 @@ LANGUAGES = (
         './{executable}',
         ('.rs',)
     ),
+    Language('Swift',
+        '',
+        'swift {source}',
+        ('.swift',)
+    ),
 )
 
 def get_language_from_source(source, language_name=None):
