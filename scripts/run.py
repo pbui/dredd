@@ -118,8 +118,8 @@ LANGUAGES = (
         ('.rs',)
     ),
     Language('Swift',
-        '',
-        'swift {source}',
+        'swiftc -O {source}',
+        './{executable}',
         ('.swift',)
     ),
 )
