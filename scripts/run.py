@@ -53,12 +53,12 @@ LANGUAGES = (
         ('.sh',)
     ),
     Language('C',
-        'gcc -std=gnu99 -o {executable} {source} -lm',
+        'gcc -std=gnu99 -O2 -o {executable} {source} -lm',
         './{executable}',
         ('.c',)
     ),
     Language('C++',
-        'g++ -std=gnu++11 -o {executable} {source} -lm',
+        'g++ -std=gnu++11 -O2 -o {executable} {source} -lm',
         './{executable}',
         ('.cc', '.cpp')
     ),
@@ -113,7 +113,7 @@ LANGUAGES = (
         ('.rb',)
     ),
     Language('Rust',
-        'rustc {source}',
+        'rustc -O {source}',
         './{executable}',
         ('.rs',)
     ),
