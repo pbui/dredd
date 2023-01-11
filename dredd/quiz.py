@@ -60,7 +60,7 @@ class Quiz(object):
         aset    = set(answers)
         missing = 1.0*len(aset.difference(rset)) / len(answers)
         extra   = 0.5*len(rset.difference(aset)) / len(answers)
-        return (1.0 - missing - extra)*value, value
+        return max(0, (1.0 - missing - extra)*value), value
 
     def evaluate_order(self, question, responses):
         answers, value = self.answers[question]
