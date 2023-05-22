@@ -11,13 +11,15 @@ SOURCE_PATH=${3}
 INPUT_PATH=${4}
 OUTPUT_PATH=${5}
 
-#IMAGE=pbui/dredd-code:20191004
+IMAGE=pbui/dredd-code:20191004
 IMAGE=pbui/dredd-code:20200506
 IMAGE=pbui/dredd-code:20200715
 IMAGE=pbui/dredd-code:20210524
 IMAGE=pbui/dredd-code:20211025
 IMAGE=pbui/dredd-code:20211126
 IMAGE=pbui/dredd-code:20220812
+IMAGE=pbui/dredd-code:20220910
+IMAGE=pbui/dredd-code:20230522
 
 if [ ! -d "$SANDBOX_PATH" ]; then
     mkdir -p "$SANDBOX_PATH"
