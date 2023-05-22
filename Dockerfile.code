@@ -15,7 +15,7 @@ RUN	    apt install -y gcc g++ python3 bash ruby default-jdk-headless golang gui
 RUN	    curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable -y && mv /root/.cargo/bin/* /usr/local/bin/
 
 # Language Support: Modern Node.js
-RUN     curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+RUN     curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
 
 RUN     apt update && apt install -y nodejs
 
