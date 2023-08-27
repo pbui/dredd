@@ -122,6 +122,11 @@ LANGUAGES = (
         './{executable}',
         ('.swift',)
     ),
+    Language('OCaml',
+        'ocamlc -o {executable} {source}',
+        './{executable}',
+        ('.ml',)
+    ),
 )
 
 def get_language_from_source(source, language_name=None):

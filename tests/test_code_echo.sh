@@ -261,6 +261,25 @@ echo -n "Testing Swift ... "
 curl -F source=@$SOURCE localhost:9206/code/test-echo
 rm -f $SOURCE
 
+# OCaml
+SOURCE=$(mktemp -t dredd_XXXXXXX.ml)
+cat > $SOURCE <<EOF
+let rec read_lines () =
+  try
+    let line = input_line stdin in
+    print_endline line;
+    read_lines ()
+  with
+  | End_of_file -> ()
+
+let () =
+  read_lines ()
+EOF
+echo
+echo -n "Testing OCaml ... "
+curl -F source=@$SOURCE localhost:9206/code/test-echo
+rm -f $SOURCE
+
 # # Brainfuck
 #
 # SOURCE=$(mktemp -t dredd_XXXXXXX.bf)
