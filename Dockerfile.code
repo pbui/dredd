@@ -1,4 +1,4 @@
-FROM	    ubuntu:22.04
+FROM	    ubuntu:24.04
 MAINTAINER  Peter Bui <pbui@nd.edu>
 
 ENV	    DEBIAN_FRONTEND noninteractive
@@ -15,19 +15,12 @@ RUN	    apt install -y gcc g++ python3 bash ruby default-jdk-headless golang gui
 RUN	    curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable -y && mv /root/.cargo/bin/* /usr/local/bin/
 
 # Language Support: Modern Node.js
-RUN     curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+RUN	    curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
 
-RUN     apt update && apt install -y nodejs
+RUN	    apt update && apt install -y nodejs
 
 # Language Support: Typescript
-RUN     npm install -g typescript ts-node @types/node
-
-# Language Support: Swift
-RUN     curl -fsSL https://archive.swiftlang.xyz/swiftlang_repo.gpg.key | gpg --dearmor -o /usr/share/keyrings/swiftlang_repo.gpg.key
-
-RUN     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/swiftlang_repo.gpg.key] https://archive.swiftlang.xyz/ubuntu jammy main" | tee /etc/apt/sources.list.d/swiftlang.list > /dev/null
-
-RUN     apt update && apt install -y swiftlang
+RUN	    npm install -g typescript ts-node @types/node
 
 # Cleanup
-RUN	apt clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN	    apt clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
