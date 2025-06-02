@@ -53,12 +53,12 @@ LANGUAGES = (
         ('.sh',)
     ),
     Language('C',
-        'gcc -std=gnu99 -O2 -o {executable} {source} -lm',
+        'gcc -std=gnu17 -O2 -o {executable} {source} -lm',
         './{executable}',
         ('.c',)
     ),
     Language('C++',
-        'g++ -std=gnu++11 -O2 -o {executable} {source} -lm',
+        'g++ -std=gnu++17 -O2 -o {executable} {source} -lm',
         './{executable}',
         ('.cc', '.cpp')
     ),
