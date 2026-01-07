@@ -41,6 +41,7 @@ class Quiz(object):
         result['score']  = float('{:0.4f}'.format(sum(result.values())))
         result['value']  = float('{:0.4f}'.format(sum(points.values())))
         result['status'] = 0 if len(responses) == len(self.answers) and result['score'] >= result['value'] else 1
+        result['points'] = points
         return result
 
     def evaluate_single(self, question, response):
