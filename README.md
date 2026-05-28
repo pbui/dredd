@@ -1,4 +1,6 @@
-# Dredd
+# Dredd - Archived
+
+**MOVED TO https://code.h4x0r.space/pbui/dredd**
 
 Automated quiz and code grader.
 
