@@ -1,26 +1,22 @@
-FROM	    ubuntu:24.04
+FROM	    debian:trixie-slim
 MAINTAINER  Peter Bui <pbui@nd.edu>
 
-ENV	    DEBIAN_FRONTEND noninteractive
+ENV	    DEBIAN_FRONTEND="noninteractive"
 
-RUN	    apt update -y
-
-# Run-time dependencies
-RUN	    apt install -y python3-tornado python3-requests python3-yaml curl ca-certificates gnupg
-
-# Language Support: C, C++, Python3, Bash, Ruby, Java, golang, Guile, Haskell, Common Lisp, C#, OCaml
-RUN	    apt install -y gcc g++ python3 bash ruby default-jdk-headless golang guile-2.2 ghc sbcl mono-complete ocaml
-
-# Language Support: rust
-RUN	    curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable -y && mv /root/.cargo/bin/* /usr/local/bin/
-
-# Language Support: Modern Node.js
-RUN	    curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
-
-RUN	    apt update && apt install -y nodejs
-
-# Language Support: Typescript
-RUN	    npm install -g typescript ts-node @types/node
-
-# Cleanup
-RUN	    apt clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN	    apt install --update -y \
+		python3-tornado python3-requests python3-yaml \
+		bash \
+		gcc g++ \
+		python3 \
+		ruby \
+		default-jdk-headless \
+		golang \
+		guile-2.2 \
+		ghc \
+		sbcl \
+		mono-complete \
+		ocaml \
+		nodejs npm \
+		rustc && \
+	    apt clean && \
+	    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

@@ -18,7 +18,7 @@ class IndexHandler(tornado.web.RequestHandler):
 
     def get(self, path):
         self.set_header('Content-Type', 'text/plain; charset="utf-8"')
-        self.write('''
+        self.write(r'''
                      _              _     _
                   __| |_ __ ___  __| | __| |
                  / _` | '__/ _ \/ _` |/ _` |
@@ -35,24 +35,24 @@ Code:
     # Post source code with appropriate extension
     $ curl -F source=@program.c https://dredd.h4x0r.space/code/$name
 
-    Note: All code is executed and evaluated in an Ubuntu 24.04 Docker
-    container (e.g pbui/dredd-code:20250602), which supports the following
-    programming language run-times:
+    Note: All code is executed and evaluated in an Debian 13 Docker container
+    (e.g pbui/dredd-code:20260528), which supports the following programming
+    language run-times:
 
-    - Python 3.12.3
-    - GCC 13.3.0
-    - OpenJDK 21.0.7
-    - Ruby 3.2.3
-    - Node.js 22.16.0
+    - Python 3.13.5
+    - GCC 14.2.0
+    - OpenJDK 21.0.11
+    - Ruby 3.3.3
+    - Node.js 20.19.2
     - TypeScript 5.8.3
-    - Golang 1.22.2
-    - Bash 5.2.21
+    - Golang 1.24
+    - Bash 5.2.37
     - Guile 2.2
-    - Rust 1.87.0
-    - GHC 9.4.7
-    - SBCL 2.2.9
-    - Mono 6.8.0.105
-    - OCaml 4.14.1
+    - Rust 1.85.0
+    - GHC 9.6.6
+    - SBCL 2.5.2
+    - Mono 6.12.0
+    - OCaml 5.3.0
 ''')
 
 # Code Handler ----------------------------------------------------------------
